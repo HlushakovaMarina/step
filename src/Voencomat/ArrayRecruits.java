@@ -15,7 +15,6 @@ public class ArrayRecruits {
         if (size < recruits.length) {
             recruits[size++] = recruit;
         } else {
-            // Можно реализовать расширение массива, если нужно
             System.out.println("Массив новобранцев полон.  Новый новобранец не добавлен.");
         }
     }
@@ -24,7 +23,7 @@ public class ArrayRecruits {
         if (index >= 0 && index < size) {
             return recruits[index];
         } else {
-            return null; // Или выбросить исключение
+            return null;
         }
     }
 

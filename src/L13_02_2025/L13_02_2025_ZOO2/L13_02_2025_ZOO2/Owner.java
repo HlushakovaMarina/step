@@ -7,12 +7,15 @@ public class Owner {
     private int id;
     private String name;
     private String surName;
+    private String sex;
+    private static String[] sexs = new String[2];
     private static String[] names = new String[5];
     private static String[] surNames = new String[5];
     private Pet[] pets;
     private static int totalOwners = 0;
     private static int nextId = 1; // Для генерации уникальных id
     private Random random = new Random();
+
     static {
         System.out.println("Класс Owner загружен в память!");
         names[0] = "Иван";
@@ -26,6 +29,8 @@ public class Owner {
         surNames[2] = "Сидоров";
         surNames[3] = "Смирнова";
         surNames[4] = "Кузнецова";
+        sexs[0] = "male";
+        sexs[1]= "famale";
     }
 
     public Owner() {
@@ -33,7 +38,13 @@ public class Owner {
         totalOwners++;
         this.name = names[random.nextInt(names.length)];
         this.surName = surNames[random.nextInt(surNames.length)];
-        this.pets = new Pet[0]; // Изначально пустой массив
+        this.pets = new Pet[0];
+        this.sex = random.nextBoolean() ? "Male" : "Female";
+
+    }
+
+    public String getSex() {
+        return sex;
     }
 
     public int getId() {

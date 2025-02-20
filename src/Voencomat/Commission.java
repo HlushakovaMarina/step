@@ -10,7 +10,7 @@ public class Commission {
     public void test(Recruit recruit) {
         for (Doctor doctor : doctors) {
             if (!recruit.isValid()) {
-                return; // Если уже не годен, дальше не проверяем
+                return;
             }
             doctor.test(recruit);
         }

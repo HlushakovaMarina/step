@@ -68,7 +68,7 @@ public abstract class Pet extends Animal {
                 ", name='" + name  +
         ", type='" + type +
         ", age=" + age +
-                ", owner=" + getOwnerName() +
+                ", owner=" + getOwnerName() + owner.getSex() +
                 '}';
     }
 
