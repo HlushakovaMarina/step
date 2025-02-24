@@ -1,7 +1,7 @@
 package L13_02_2025.L13_02_2025_ZOO2.L13_02_2025_ZOO2;
 
 
-public abstract class Pet extends Animal {
+public class Pet extends Animal {
     private int id;
     private String name;
     private String type;
@@ -9,13 +9,14 @@ public abstract class Pet extends Animal {
     private Owner owner;
     private static int nextId = 1; // Для генерации уникальных id
 
-    public Pet(String name, String type, int age) {
-        super(name,type,age);
+    public Pet() {
+        super(null, null, 0);
         this.id = nextId++;
         this.name = name;
         this.type = type;
         this.age = age;
     }
+
 
     public int getId() {
         return id;

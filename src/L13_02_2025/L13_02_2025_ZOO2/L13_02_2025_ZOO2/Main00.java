@@ -1,10 +1,24 @@
 package L13_02_2025.L13_02_2025_ZOO2.L13_02_2025_ZOO2;
 
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main00 {
     public static void main(String[] args) {
-        // Создание владельцев
+        List<Owner> owners = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            Owner owner = OwnerFactory.next();
+            for (int j = 0; j < 200; j++) {
+                Pet pet = PetFactory.next();
+                owner.addPet(pet);
+            }
+            owners.add(owner);
+        }
+
+        for (Owner owner : owners) {
+            System.out.println(owner);
+        }
         Owner owner1 = new Owner();
         Owner owner2 = new Owner();
         Owner owner3 = new Owner();
