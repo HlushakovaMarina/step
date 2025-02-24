@@ -1,19 +1,33 @@
-package L13_02_2025.L13_02_2025_ZOO2.L13_02_2025_ZOO2;
+package L13_02_2025.L13_02_2025_ZOO2;
 
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Owner {
+
     private int id;
+
     private String name;
+
     private String surName;
+
     private String sex;
-    private static String[] sexs = new String[2];
+
+    private String firstName;
+
+    private String lastName;
+
+    private List<Pet> pets = new ArrayList<>();
+
     private static String[] names = new String[5];
+
     private static String[] surNames = new String[5];
-    private Pet[] pets;
+
     private static int totalOwners = 0;
+
     private static int nextId = 1; // Для генерации уникальных id
+
     private Random random = new Random();
 
     static {
@@ -29,18 +43,23 @@ public class Owner {
         surNames[2] = "Сидоров";
         surNames[3] = "Смирнова";
         surNames[4] = "Кузнецова";
-        sexs[0] = "male";
-        sexs[1]= "famale";
     }
 
-    public Owner() {
+    public Owner(String firstName, String lastName) {
         this.id = nextId++;
         totalOwners++;
-        this.name = names[random.nextInt(names.length)];
-        this.surName = surNames[random.nextInt(surNames.length)];
-        this.pets = new Pet[0];
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.sex = random.nextBoolean() ? "Male" : "Female";
 
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public String getSex() {
@@ -67,12 +86,8 @@ public class Owner {
         this.surName = surName;
     }
 
-    public Pet[] getPets() {
+    public List<Pet> getPets() {
         return pets;
-    }
-
-    public void setPets(Pet[] pets) {
-        this.pets = pets;
     }
 
     public static int getTotalOwners() {
@@ -80,23 +95,17 @@ public class Owner {
     }
 
     public void addPet(Pet pet) {
-
-        Pet[] newPets = new Pet[this.pets.length + 1];
-
-        System.arraycopy(this.pets, 0, newPets, 0, this.pets.length);
-
-        newPets[this.pets.length] = pet;
-
-        this.pets = newPets;
-
+        this.pets.add(pet);
         pet.setOwner(this);
     }
 
     public String toString() {
         return "Owner{" +
-                "id=" + id +
-                ", name='" + name +
-        ", surName='" + surName +
-        '}';
+                "firstName='" + firstName +
+                ", lastName='" + lastName +
+                ", sex='" + sex +
+                ", petCount=" + pets.size() +
+                '}';
     }
+
 }
