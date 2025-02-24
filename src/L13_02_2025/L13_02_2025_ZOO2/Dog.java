@@ -1,9 +1,11 @@
-package L13_02_2025.L13_02_2025_ZOO2.L13_02_2025_ZOO2;
+package L13_02_2025.L13_02_2025_ZOO2;
 
 public class Dog extends Pet {
-private static String species = "Собака";
+
+    private static String species = "Собака";
+
     public Dog(String name, int age) {
-        super();
+        super(name, species, age);
     }
 
     @Override
@@ -23,7 +25,6 @@ private static String species = "Собака";
 
     @Override
     public void sleep() {
-
     }
 }
 

@@ -1,10 +1,15 @@
-package L13_02_2025.L13_02_2025_ZOO2.L13_02_2025_ZOO2;
+package L13_02_2025.L13_02_2025_ZOO2;
 
 public abstract class Animal {
+
     protected int id; // Уникальный индификатор
+
     private String name;
+
     private String species;
+
     private int age;
+
     private static int totalAnimals = 0;
 
     public Animal(String name, String species, int age) {
@@ -34,15 +39,14 @@ public abstract class Animal {
 
     public abstract void sleep();
 
+    public static int getTotalAnimals() {
+        return totalAnimals;
+    }
 
-
+    @Override
     public String toString() {
         return species + " по имени " + name +
                 ", " + "возраст: " + age + " (ID: " + id + ")";
-    }
-
-    public static int getTotalAnimals() {
-        return totalAnimals;
     }
 }
 
