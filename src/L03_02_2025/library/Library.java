@@ -1,6 +1,5 @@
 package L03_02_2025.library;
 
-import L30_01_2025.Wheel;
 
 public class Library {
     private Book[] books;

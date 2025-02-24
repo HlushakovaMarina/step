@@ -1,9 +1,11 @@
-package L13_02_2025.L13_02_2025_ZOO2.L13_02_2025_ZOO2;
+package L13_02_2025.L13_02_2025_ZOO2;
 
-public  class Cat extends Pet {
-private static String species = "Кот";
+public class Cat extends Pet {
+
+    private static String species = "Кот";
+
     public Cat(String name, int age) {
-        super();
+        super(name, species, age);
     }
 
     @Override
@@ -25,4 +27,5 @@ private static String species = "Кот";
     public void sleep() {
         System.out.println(getName() + " спит.");
     }
+
 }
