@@ -50,7 +50,16 @@ public class Main00 {
 
 
         System.out.println("Общее количество владельцев: " + Owner.getTotalOwners());
+        Swimable[] swimables = new Swimable[1];
+        swimables[0] = new Bird("Чик", 5);
+        for (Swimable swimable : swimables) {
+            swimable.swim();
+            if (swimable instanceof Bird bird) {
+                bird.move();
+            }
+        }
+        Flyable[] flyables = new Flyable[1];
+        flyables[0] = new Bird("Утка", 10);
     }
 }
-
 
