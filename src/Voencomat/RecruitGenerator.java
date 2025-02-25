@@ -12,10 +12,10 @@ public class RecruitGenerator {
         String firstName = firstNames[random.nextInt(firstNames.length)];
         String middleName = middleNames[random.nextInt(middleNames.length)];
         String lastName = lastNames[random.nextInt(lastNames.length)];
-        double visionCoeff = 0.5 + random.nextDouble(); // от 0.5 до 1.5
+        double visionCoeff = 0.5 + random.nextDouble();
         boolean flatFeet = random.nextBoolean();
-        int implantCount = random.nextInt(5); // от 0 до 4
-        int cardiogram = 40 + random.nextInt(80); // от 40 до 120
+        int implantCount = random.nextInt(5);
+        int cardiogram = 40 + random.nextInt(80);
         return new Recruit(firstName, middleName, lastName, visionCoeff, flatFeet, implantCount, cardiogram);
     }
 

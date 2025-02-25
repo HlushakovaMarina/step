@@ -4,14 +4,14 @@ public class CreditCard implements PaymentMethod {
     private long cardNumber;
     private String cardHolder;
 
-    public CreditCard(int cardNumber, String cardHolder) {
+    public CreditCard(long cardNumber, String cardHolder) {
         this.cardNumber = cardNumber;
         this.cardHolder = cardHolder;
     }
 
     @Override
     public void pay(double amount) {
-        System.out.println("Оплата " + amount  + cardHolder + " Иван Иванов");
+        System.out.println("Оплата " + amount + " с кредитной карты " + cardHolder);
     }
 
 }
