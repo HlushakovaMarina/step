@@ -29,12 +29,10 @@ public class Main {
                     invalidRecruits.add(recruit);
                 }
             }
-
-
             System.out.println("Количество годных новобранцев: " + validRecruits.size());
             validRecruits.forEach(System.out::println);
 
-            System.out.println("\\nКоличество не годных новобранцев: " + invalidRecruits.size());
+            System.out.println("Количество не годных новобранцев: " + invalidRecruits.size());
             invalidRecruits.forEach(System.out::println);
         }
 
