@@ -13,5 +13,6 @@ public class Task00 {
         System.out.println("user5 == user1 "+(user5==user1));
         System.out.println(user2);
         System.out.println(user5);
+        System.out.println();
     }
 }
