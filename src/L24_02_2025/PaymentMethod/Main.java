@@ -13,6 +13,5 @@ public class Main {
         for (PaymentMethod paymentMethod : paymentMethods) {
             paymentMethod.pay(amount);
         }
-
     }
 }
