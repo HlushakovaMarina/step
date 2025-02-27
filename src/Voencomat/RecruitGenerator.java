@@ -3,12 +3,12 @@ package Voencomat;
 import java.util.Random;
 
 public class RecruitGenerator {
-    private String[] firstNames = {"Иван", "Петр", "Сергей", "Александр", "Дмитрий"};
-    private String[] middleNames = {"Иванович", "Петрович", "Сергеевич", "Александрович", "Дмитриевич"};
-    private String[] lastNames = {"Иванов", "Петров", "Сидоров", "Смирнов", "Кузнецов"};
-    private Random random = new Random();
+    private static String[] firstNames = {"Иван", "Петр", "Сергей", "Александр", "Дмитрий"};
+    private static String[] middleNames = {"Иванович", "Петрович", "Сергеевич", "Александрович", "Дмитриевич"};
+    private static String[] lastNames = {"Иванов", "Петров", "Сидоров", "Смирнов", "Кузнецов"};
+    private static Random random = new Random();
 
-    public Recruit generate() {
+    public static Recruit generate() {
         String firstName = firstNames[random.nextInt(firstNames.length)];
         String middleName = middleNames[random.nextInt(middleNames.length)];
         String lastName = lastNames[random.nextInt(lastNames.length)];
