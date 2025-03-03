@@ -12,6 +12,7 @@ public class Main {
         double amount = 150.0;
         for (PaymentMethod paymentMethod : paymentMethods) {
             paymentMethod.pay(amount);
+
         }
     }
 }
