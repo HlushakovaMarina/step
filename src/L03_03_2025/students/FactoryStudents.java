@@ -11,7 +11,6 @@ public class FactoryStudents {
 
     public static Student next() {
         String names = next().getName();
-
         return new Student(names, next().getAge(), next().getGrade());
     }
 }

@@ -8,7 +8,6 @@ public class Main {
         List<Student> students = new ArrayList<>(100);
 
 
-
         boolean isDimaContains = students.contains("Dima");
         System.out.println(isDimaContains);
 
