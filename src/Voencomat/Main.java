@@ -11,10 +11,10 @@ public class Main {
             Commission commission = new Commission(doctors);
 
 
-            RecruitGenerator generator = new RecruitGenerator();
+
             ArrayRecruits allRecruits = new ArrayRecruits(1000);
             for (int i = 0; i < 1000; i++) {
-                allRecruits.add(generator.generate());
+                allRecruits.add(RecruitGenerator.generate());
             }
 
 
