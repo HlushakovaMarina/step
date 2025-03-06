@@ -1,6 +1,8 @@
 package L03_03_2025.students;
 
-public class Student {
+import java.util.Objects;
+
+public class Student implements Comparable<Student> {
     private String name;
     private int age;
     private double grade;
@@ -11,37 +13,36 @@ public class Student {
         this.grade = grade;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return age == student.age && Objects.equals(name, student.name);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public double getGrade() {
         return grade;
     }
-
-    public void setGrade(double grade) {
-        this.grade = grade;
+    @Override
+    public String toString() {
+        return name + " " + age + " Средний балл: " + grade;
     }
 
     @Override
-    public String toString() {
-        return "Student{" +
-                "name= '" + name + '\'' +
-                ", age= " + age +
-                ", grade= " + grade +
-                '}';
+    public int compareTo(Student o) {
+        return this.name.compareTo(o.name);
     }
 }
-
