@@ -3,58 +3,62 @@ package L03_03_2025.students;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main extends FactoryStudents {
+public class Main {
+    private static List<Student> students = new ArrayList<>();
+    private static List<Student> foundStudents = new ArrayList<>();
+    private static Student studentChange = new Student("Виктор", 28, 75);
+
     public static void main(String[] args) {
-        // Создание 100 студентов с рандомными значениями и помещение их в List
-        List<Student> students = new ArrayList<>(100);
-
-        // Пример использования методов
-        String searchName = "Студент1";
-        Student foundStudent = findStudentByName(students, searchName);
-        if (foundStudent != null) {
-            System.out.println("Найден студент: " + foundStudent);
-        } else {
-            System.out.println("Студент с именем " + searchName + " не найден.");
+        for (int i = 0; i < 100; i++) {
+            students.add(FactoryStudents.next());
         }
+        // Поиск студента
+        foundStudent("Дима");
+        System.out.println(foundStudents);
 
-        String deleteName = "Студент2";
-        removeStudentByName(students, deleteName);
-        System.out.println("Студент с именем " + deleteName + " удален.  Размер списка: " + students.size());
+        // Удаление студента
+        deleteStudent("Дима");
+        System.out.println(students);
 
-        List<Student> moreStudents = new ArrayList(5); //Создаем еще список студентов для добавления
-        addStudentsToList(students, moreStudents);
-        System.out.println("Добавлены студенты. Размер списка: " + students.size());
+        //Добавление студента
+        addStudent(foundStudents);
+        System.out.println(students);
 
-        int replaceIndex = 1;
-        Student newStudent = new Student("Заменен студент", 22, 4.9);
-        replaceStudentAtIndex(students, replaceIndex, newStudent);
-        System.out.println("Студент в индексе " + replaceIndex + " заменен: " + students.get(replaceIndex));
+        // Замена студента по индексу
+        changeStudent(0);
+        System.out.println(students);
     }
 
-
-    public static Student findStudentByName(List<Student> students, String name) {
+    // метод нахождения студента по имени
+    static List foundStudent(String name) {
         for (Student student : students) {
-            if (student.getName().equals(name)) {
-                return student;
+            if (name.equals(student.getName())) {
+                foundStudents.add(student);
+                break;
             }
         }
-        return null;
+        return foundStudents;
     }
 
-    public static void removeStudentByName(List<Student> students, String name) {
-        students.removeIf(student -> student.getName().equals(name));
-    }
-
-    public static void addStudentsToList(List<Student> firstList, List<Student> nextList) {
-        firstList.addAll(nextList);
-
-    }
-
-    public static void replaceStudentAtIndex(List<Student> students, int index, Student newStudent) {
-        if (index >= 0 && index < students.size()) {
-            students.set(index, newStudent);
-        } else {
-            System.out.println("Неподобающий индекс для замены.");
+    // метод удаления студента по имени
+    static List deleteStudent(String name) {
+        for (Student student : students) {
+            if (name.equals(student.getName())) {
+                students.remove(name);
+            }
         }
+        return students;
+    }
+
+    // метод добавления List студентов к другому List студентов
+    static List addStudent(List List) {
+        students.addAll(List);
+        return students;
+    }
+
+    // метод замены студента по индексу
+    static List changeStudent(int index) {
+        students.set(index, studentChange);
+        return students;
     }
 }
