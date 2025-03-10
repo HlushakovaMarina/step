@@ -1,7 +1,4 @@
-package L03_03_2025;
-
-import java.util.ArrayList;
-import java.util.List;
+package L03_03_2025.Car;
 
 public class Car {
     private String model;
