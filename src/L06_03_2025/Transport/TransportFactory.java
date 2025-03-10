@@ -26,7 +26,7 @@ public class TransportFactory {
                 int loadCapacity = transport.nextInt(10000) + 1000;
                 return new Truck(model, speed, loadCapacity);
             default:
-                return new Transport(model, speed);
+                return null;
         }
 
     }

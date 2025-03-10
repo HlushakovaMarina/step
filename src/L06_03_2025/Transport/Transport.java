@@ -2,9 +2,9 @@ package L06_03_2025.Transport;
 
 import java.util.Objects;
 
-public class Transport {
-    private String model;
-    private int speed;
+public abstract class Transport {
+    private final String model;
+    private final int speed;
 
     public Transport(String model, int speed) {
         this.model = model;
@@ -21,6 +21,7 @@ public class Transport {
 
     @Override
     public boolean equals(Object o) {
+        if(this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transport transport = (Transport) o;
         return Objects.equals(model, transport.model);

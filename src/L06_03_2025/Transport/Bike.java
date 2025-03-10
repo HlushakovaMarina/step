@@ -1,7 +1,7 @@
 package L06_03_2025.Transport;
 
 public class Bike extends Transport {
-    private boolean hasSidecar;
+    private final boolean hasSidecar;
 
     public Bike(String model, int speed, boolean hasSidecar) {
         super(model, speed);

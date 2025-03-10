@@ -3,9 +3,9 @@ package L06_03_2025.Transport;
 import java.util.*;
 
 public class TransportManager {
-    List<Transport> transportList = new ArrayList<>();
-    Set<Transport> uniqueTransportSet = new HashSet<>();
-
+   private final List<Transport> transportList = new ArrayList<>();
+    private final Set<Transport> uniqueTransportSet = new HashSet<>();
+    private Set<Transport> uniqueTransportTreeSet = new TreeSet<>();
 
     public void addTransport(Transport transport) {
         transportList.add(transport);
@@ -22,7 +22,7 @@ public class TransportManager {
         transportList.sort(Comparator.comparingInt(Transport::getSpeed));
         Set<Transport> sortedSet = new TreeSet<>(Comparator.comparingInt(Transport::getSpeed));
         sortedSet.addAll(uniqueTransportSet);
-        uniqueTransportSet = sortedSet;
+        uniqueTransportTreeSet = sortedSet;
         System.out.println();
     }
 
@@ -30,7 +30,7 @@ public class TransportManager {
         transportList.sort(Comparator.comparing(Transport::getModel));
         Set<Transport> sortedSet = new TreeSet<>(Comparator.comparing(Transport::getModel));
         sortedSet.addAll(uniqueTransportSet);
-        uniqueTransportSet = sortedSet;
+        uniqueTransportTreeSet = sortedSet;
         System.out.println();
     }
 
@@ -47,5 +47,6 @@ public class TransportManager {
         for (Transport transport : uniqueTransportSet) {
             System.out.println(transport);
         }
+
     }
 }
