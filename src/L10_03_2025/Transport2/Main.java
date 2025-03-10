@@ -1,4 +1,4 @@
-package L06_03_2025.Transport;
+package L10_03_2025.Transport2;
 
 public class Main {
     public static void main(String[] args) {
