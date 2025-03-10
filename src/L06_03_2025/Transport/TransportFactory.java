@@ -5,21 +5,30 @@ import java.util.Random;
 
 public class TransportFactory {
     private static final Random transport = new Random();
-    private static List<String> model = List.of("BMW", "Honda", "Susuki", "GMS", "Kavasaki");
+    private static List<String> models = List.of("BMW", "Honda", "Susuki", "GMS", "Kavasaki");
+    private static final String[] carFuelTypes = {"Бензин", "Дизель", "Электрический"};
 
-    public TransportFactory next() {
+
+    public static Transport next() {
         int i = transport.nextInt(3);
-                int model;
-                int hasSidecar;
-                long loadCapacity;
+        String model = models.get(transport.nextInt(models.size())) + "_" + transport.nextInt(100);
+        int speed = transport.nextInt(250);
 
-        if (i == 2) {
-            return new Car(model[transport.nextInt(model.size())],transport.nextInt(20));
-        } else if (i == 1) {
-            return new Bike(model[transport.nextInt(model.size())], transport.nextInt(20));
-        } else {
-            return new Truck(model[transport.nextInt(model.size())], transport.nextInt(20));
+
+        switch (i) {
+            case 0:
+                String fuelType = carFuelTypes[transport.nextInt(carFuelTypes.length)];
+                return new Car(model, speed, fuelType);
+            case 1:
+                boolean hasSidecar = transport.nextBoolean();
+                return new Bike(model, speed, hasSidecar);
+            case 2:
+                int loadCapacity = transport.nextInt(10000) + 1000;
+                return new Truck(model, speed, loadCapacity);
+            default:
+                return new Transport(model, speed);
         }
+
     }
 }
-}
+
