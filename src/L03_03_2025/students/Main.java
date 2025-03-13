@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    private static List<Student> students = new ArrayList<>();
-    private static List<Student> foundStudents = new ArrayList<>();
-    private static Student studentChange = new Student("Виктор", 28, 75);
+    private static List<User> students = new ArrayList<>();
+    private static List<User> foundStudents = new ArrayList<>();
+    private static User studentChange = new User("Виктор", 28, 75);
 
     public static void main(String[] args) {
         for (int i = 0; i < 100; i++) {
@@ -31,7 +31,7 @@ public class Main {
 
     // метод нахождения студента по имени
     static List foundStudent(String name) {
-        for (Student student : students) {
+        for (User student : students) {
             if (name.equals(student.getName())) {
                 foundStudents.add(student);
                 break;
@@ -42,7 +42,7 @@ public class Main {
 
     // метод удаления студента по имени
     static List deleteStudent(String name) {
-        for (Student student : students) {
+        for (User student : students) {
             if (name.equals(student.getName())) {
                 students.remove(name);
             }
