@@ -7,33 +7,41 @@ public class Main {
             manager.addTransport(TransportFactory.next());
         }
 
-        System.out.println(" Начальное состояние ");
+        System.out.println("Все транспортные средства:");
         manager.printAllTransport();
-        manager.printUniqueTransport();
+        System.out.println();
 
-        System.out.println(" удаение первой модели ");
-        manager.removeTransport("Модель №1");
+        String licensePlateToFind = manager.transportByPlate.keySet().iterator().next();
+        System.out.println("Транспортное средство по номеру " + licensePlateToFind + ":");
+        System.out.println(manager.findTransportByPlate(licensePlateToFind));
+        System.out.println();
+
+        System.out.println("Список машин:");
+        manager.getTransportByType("Car").forEach(System.out::println);
+        System.out.println();
+
+        System.out.println("Самая быстрая машина:");
+        System.out.println(manager.getFastestTransportByType("Car"));
+        System.out.println();
+
+        String licensePlateToRemove = manager.transportByPlate.keySet().iterator().next();
+        System.out.println("Удаляем транспортное средство с номером " + licensePlateToRemove);
+        manager.removeTransport(licensePlateToRemove);
+        System.out.println();
+
+        System.out.println("Все транспортные средства после удаления:");
         manager.printAllTransport();
-        manager.printUniqueTransport();
 
-        System.out.println(" Сортировка по скорости ");
-        manager.sortTransportBySpeed();
-        manager.printAllTransport();
-        manager.printUniqueTransport();
-
-        System.out.println(" Сортировка по модели ");
-        manager.sortTransportByModel();
-        manager.printAllTransport();
-        manager.printUniqueTransport();
-        test("Hi", "WOW");
-        test("Hi");
-        test();
-        String[]s=new String[12];
-        test(s);
-    }
-
-    public static void test(String... strings) {
-        for (String string:strings);
-
+//        test("Hi", "WOW");
+//        test("Hi");
+//        test();
+//        String[]s=new String[12];
+//        test(s);
+//    }
+//
+//    public static void test(String... strings) {
+//        for (String string:strings);
+//
+//    }
     }
 }
