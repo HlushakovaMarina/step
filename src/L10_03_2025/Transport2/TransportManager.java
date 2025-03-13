@@ -5,13 +5,16 @@ import java.util.*;
 import static java.util.Arrays.stream;
 
 public class TransportManager {
-    protected static final Map<String, Transport> transportByPlate = new HashMap<>();
-    protected static final Map<String, List<Transport>> transportByType = new HashMap<>();
+    protected final Map<String, Transport> transportByPlate = new HashMap<>();
+    protected final Map<String, List<Transport>> transportByType = new HashMap<>();
 
-    public static void addTransport(Transport transport) {
+    public void addTransport(Transport transport) {
         transportByPlate.put(transport.getLicensePlate(), transport);
         String type = transport.getClass().getSimpleName();
-        transportByType.put(transport.getModel(), (List<Transport>) transport);
+        transportByType.putIfAbsent(type, new ArrayList<>());
+        transportByType.get(type).add(transport);
+//        List<Transport>transports=transportByType.get(type);
+//        transports.add(transport);
     }
 
 
@@ -20,7 +23,22 @@ public class TransportManager {
         if (transport != null) {
             String type = transport.getClass().getSimpleName();
             transportByType.get(type).remove(transport);
-            System.out.println();
+            System.out.println("Удалили ");
+        } else {
+            System.out.println("Не нашли такой транспорт по такому номеру ");
+        }
+    }
+
+    public void removeTransport2(String licensePlate) {
+        transportByPlate.remove(licensePlate);
+        for (Map.Entry<String, List<Transport>> entry : transportByType.entrySet()) {
+            List<Transport> value = entry.getValue();
+            Iterator<Transport> iterator = value.iterator();
+            while (iterator.hasNext()) ;
+            Transport next = iterator.next();
+            if (licensePlate.equals(next.getLicensePlate())) {
+                iterator.remove();
+            }
         }
     }
 
@@ -33,10 +51,14 @@ public class TransportManager {
     }
 
     public Transport getFastestTransportByType(String type) {
-        return (Transport) transportByType.get(type);
+        List<Transport> transports = transportByType.get(type);
+        transports.sort(Comparator.comparingInt(Transport::getSpeed));
+        return transports.getLast();
     }
 
     public void printAllTransport() {
         transportByPlate.values().forEach(System.out::println);
     }
+
+
 }

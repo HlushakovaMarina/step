@@ -32,16 +32,11 @@ public class Main {
         System.out.println("Все транспортные средства после удаления:");
         manager.printAllTransport();
 
-//        test("Hi", "WOW");
-//        test("Hi");
-//        test();
-//        String[]s=new String[12];
-//        test(s);
-//    }
-//
-//    public static void test(String... strings) {
-//        for (String string:strings);
-//
-//    }
+
+        Integer num14 = Integer.MAX_VALUE;
+        Boolean aTrue = Boolean.TRUE;
+        String t = Boolean.TRUE.toString();
+        System.out.println(num14);
+
     }
 }
