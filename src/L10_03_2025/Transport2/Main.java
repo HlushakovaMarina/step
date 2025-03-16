@@ -16,11 +16,11 @@ public class Main {
         System.out.println(manager.findTransportByPlate(licensePlateToFind));
         System.out.println();
 
-        System.out.println("Список машин:");
+        System.out.println("Список машин: ");
         manager.getTransportByType("Car").forEach(System.out::println);
         System.out.println();
 
-        System.out.println("Самая быстрая машина:");
+        System.out.println("Самая быстрая машина: ");
         System.out.println(manager.getFastestTransportByType("Car"));
         System.out.println();
 
