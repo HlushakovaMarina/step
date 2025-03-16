@@ -2,12 +2,12 @@ package L03_03_2025.students;
 
 import java.util.Objects;
 
-public class Student implements Comparable<Student> {
+public class User implements Comparable<User> {
     private String name;
     private int age;
     private double grade;
 
-    public Student(String name, int age, double grade) {
+    public User(String name, int age, double grade) {
         this.name = name;
         this.age = age;
         this.grade = grade;
@@ -16,7 +16,7 @@ public class Student implements Comparable<Student> {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
+        User student = (User) o;
         return age == student.age && Objects.equals(name, student.name);
     }
 
@@ -42,7 +42,7 @@ public class Student implements Comparable<Student> {
     }
 
     @Override
-    public int compareTo(Student o) {
+    public int compareTo(User o) {
         return this.name.compareTo(o.name);
     }
 }

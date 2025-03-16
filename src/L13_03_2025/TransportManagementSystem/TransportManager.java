@@ -1,8 +1,6 @@
-package L10_03_2025.Transport2;
+package L13_03_2025.TransportManagementSystem;
 
 import java.util.*;
-
-import static java.util.Arrays.stream;
 
 public class TransportManager {
     protected final Map<String, Transport> transportByPlate = new HashMap<>();

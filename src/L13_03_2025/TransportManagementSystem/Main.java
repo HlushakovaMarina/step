@@ -1,10 +1,13 @@
-package L10_03_2025.Transport2;
+package L13_03_2025.TransportManagementSystem;
 
 public class Main {
     public static void main(String[] args) {
         TransportManager manager = new TransportManager();
+
         for (int i = 0; i < 20; i++) {
-            manager.addTransport(TransportFactory.next());
+            Transport transport = TransportFactory.next();
+            transport.setUser(UserFactory.next());
+            manager.addTransport(transport);
         }
 
         System.out.println("Все транспортные средства:");
@@ -16,11 +19,11 @@ public class Main {
         System.out.println(manager.findTransportByPlate(licensePlateToFind));
         System.out.println();
 
-        System.out.println("Список машин: ");
+        System.out.println("Список машин:");
         manager.getTransportByType("Car").forEach(System.out::println);
         System.out.println();
 
-        System.out.println("Самая быстрая машина: ");
+        System.out.println("Самая быстрая машина:");
         System.out.println(manager.getFastestTransportByType("Car"));
         System.out.println();
 

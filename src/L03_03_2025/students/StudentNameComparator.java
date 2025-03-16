@@ -2,9 +2,9 @@ package L03_03_2025.students;
 
 import java.util.Comparator;
 
-public class StudentNameComparator implements Comparator<Student> {
+public class StudentNameComparator implements Comparator<User> {
     @Override
-    public int compare(Student o1, Student o2) {
+    public int compare(User o1, User o2) {
         return o1.getName().compareTo(o2.getName());
     }
 }

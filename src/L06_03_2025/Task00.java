@@ -1,18 +1,18 @@
 package L06_03_2025;
 
 import L03_03_2025.students.FactoryStudents;
-import L03_03_2025.students.Student;
+import L03_03_2025.students.User;
 import L03_03_2025.students.StudentNameComparator;
 
 import java.util.*;
 
 public class Task00 {
     public static void main(String[] args) {
-        Set<Student> students = new HashSet<>();
-        Set<Student> studentsLinked = new LinkedHashSet<>();
-        Set<Student> studentsTreeSet = new TreeSet<>(new StudentNameComparator());
+        Set<User> students = new HashSet<>();
+        Set<User> studentsLinked = new LinkedHashSet<>();
+        Set<User> studentsTreeSet = new TreeSet<>(new StudentNameComparator());
         for (int i = 0; i < 10; i++) {
-            Student next = FactoryStudents.next();
+            User next = FactoryStudents.next();
             System.out.println(next);
             students.add(next);
             studentsLinked.add(next);

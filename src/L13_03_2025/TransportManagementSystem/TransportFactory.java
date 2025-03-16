@@ -1,4 +1,4 @@
-package L10_03_2025.Transport2;
+package L13_03_2025.TransportManagementSystem;
 
 import java.util.List;
 import java.util.Random;
@@ -24,7 +24,7 @@ public class TransportFactory {
                 return new Car(model, speed, randomLicensePlate, carFuelTypes.get(transport.nextInt(carFuelTypes.size())));
             case 1:
                 boolean hasSidecar = transport.nextBoolean();
-                return new Bike(model, speed, randomLicensePlate, hasSidecar);
+                return new Bike(model, speed, randomLicensePlate, hasSidecar, );
             case 2:
                 int loadCapacity = transport.nextInt(1000) + 1000;
                 return new Truck(model, speed, randomLicensePlate, loadCapacity);
