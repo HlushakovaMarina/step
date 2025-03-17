@@ -77,5 +77,5 @@ public abstract class Transport {
                 ", model='" + model + '\'' +
                 '}';
     }
-}
+    }
 
