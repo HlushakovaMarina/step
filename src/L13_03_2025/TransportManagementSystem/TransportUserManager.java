@@ -7,11 +7,9 @@ public class TransportUserManager {
 
 
     public void addTransport(Transport transport) {
-        User user = transport.getUser();
+        final User user = transport.getUser();
         transportByOwner.putIfAbsent(user, new ArrayList<>());
         transportByOwner.get(user).add(transport);
-//        List<Transport>transports=transportByType.get(type);
-//        transports.add(transport);
     }
 
     public List<Transport> getTransportByOwner(User owner) {
@@ -19,17 +17,15 @@ public class TransportUserManager {
     }
 
     public void removeTransport(User owner, String licensePlate) {
-        transportByOwner.remove(licensePlate);
-        for (Map.Entry<User, List<Transport>> entry : transportByOwner.entrySet()) {
-            List<Transport> value = entry.getValue();
-            Iterator<Transport> iterator = value.iterator();
-            while (iterator.hasNext()) ;
-            Transport next = iterator.next();
-            if (licensePlate.equals(next.getLicensePlate())) {
-                iterator.remove();
-            }
+        List<Transport> transports = transportByOwner.get(owner);
+        Iterator<Transport> iterator = transports.iterator();
+        while (iterator.hasNext()) ;
+        Transport next = iterator.next();
+        if (licensePlate.equals(next.getLicensePlate())) {
+            iterator.remove();
         }
     }
+
 
     public Transport getFastestTransport(User owner) {
         List<Transport> transports = transportByOwner.get(owner);
@@ -38,15 +34,19 @@ public class TransportUserManager {
     }
 
     public User findOwnerWithMostCars() {
-        TreeMap<Integer, User> treeMap = new H
-        return transportByOwner.get();
+        TreeMap<Integer, User> findOwnerWithMostCars = new TreeMap<>();
+        for (Map.Entry<User, List<Transport>> entry : transportByOwner.entrySet()) {
+            int size = entry.getValue().size();
+            User value = entry.getKey();
+            findOwnerWithMostCars.put(size, value);
+        }
+        return findOwnerWithMostCars.lastEntry().getValue();
     }
 
 
     public void printAllOwnersAndTransport() {
         transportByOwner.values().forEach(System.out::println);
     }
-
 }
 
 

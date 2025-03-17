@@ -1,6 +1,5 @@
 package L13_03_2025.TransportManagementSystem;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,10 +8,16 @@ public class TransportStatistics {
 
     public void addTransport(Transport transport) {
         String brand = transport.getModel();
-        brandCount.put(brand, brandCount.getOrDefault(brand, 0) + 1);
+        if (brandCount.containsKey(brand)){
+            int count = brandCount.get(brand);
+            brandCount.put(brand,++count);
+        }
+        else {
+            brandCount.put(brand,1);
+        }
     }
     public int getBrandCount(String brand) {
-        return brandCount.getOrDefault(brand, 0);
+        return brandCount.get(brand);
     }
     public void printBrandStatistics() {
         brandCount.forEach((brand, count) -> System.out.println(brand + ": " + count));

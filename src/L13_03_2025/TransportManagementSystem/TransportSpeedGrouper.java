@@ -1,15 +1,13 @@
 package L13_03_2025.TransportManagementSystem;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 public class TransportSpeedGrouper {
-    private final Map<Integer, Set<Transport>> transportBySpeed = new TreeMap<>();
+    private final Map<Integer, Set<Transport>> transportBySpeed = new HashMap<>();
 
     public void addTransport(Transport transport) {
-        transportBySpeed.computeIfAbsent(transport.getSpeed(),a -> new HashSet<>()).add(transport);
+        transportBySpeed.putIfAbsent(transport.getSpeed(),new TreeSet<>());
+        transportBySpeed.get(transport.getSpeed()).add(transport);
     }
 
     public Set<Transport> getTransportBySpeed(int speed) {
