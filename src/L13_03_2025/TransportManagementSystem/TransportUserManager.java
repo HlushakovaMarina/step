@@ -18,7 +18,6 @@ public class TransportUserManager {
         return transportByOwner.get(owner);
     }
 
-
     public void removeTransport(User owner, String licensePlate) {
         transportByOwner.remove(licensePlate);
         for (Map.Entry<User, List<Transport>> entry : transportByOwner.entrySet()) {
@@ -43,9 +42,11 @@ public class TransportUserManager {
         return transportByOwner.get();
     }
 
+
     public void printAllOwnersAndTransport() {
         transportByOwner.values().forEach(System.out::println);
     }
+
 }
 
 

@@ -2,7 +2,7 @@ package L10_03_2025.Transport2;
 
 import java.util.*;
 
-import static java.util.Arrays.stream;
+
 
 public class TransportManager {
     protected final Map<String, Transport> transportByPlate = new HashMap<>();
