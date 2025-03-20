@@ -54,11 +54,7 @@ public class TransportService {
 //        }
 //        m.sort(new TransportMapValueComparator());
 //    }
-        public List<String> findTop5MostPopularBrands () {
-            Map<String, Integer> top5PopularBrands = new HashMap<>();
 
-
-        }
 
 }
 

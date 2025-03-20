@@ -3,8 +3,8 @@ package L13_03_2025.TransportManagementSystem;
 public class Bike extends Transport {
     private final boolean hasSidecar;
 
-    public Bike(String model, int speed, String licensePlate, int year, User user, boolean hasSidecar) {
-        super(model, speed, licensePlate, year, user);
+    public Bike(String model, int speed, String licensePlate, boolean hasSidecar) {
+        super(model, speed, licensePlate);
         this.hasSidecar = hasSidecar;
     }
 

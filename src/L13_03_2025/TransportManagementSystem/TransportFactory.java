@@ -8,7 +8,7 @@ public class TransportFactory {
     private static final List<String> models = List.of("BMW", "Honda", "Susuki", "GMS", "Kavasaki");
     private static final List<String> carFuelTypes = List.of("Бензин", "Дизель", "Электрический");
 
-    private TransportFactory(){
+    private TransportFactory() {
     }
 
     public static Transport next() {
@@ -24,7 +24,7 @@ public class TransportFactory {
                 return new Car(model, speed, randomLicensePlate, carFuelTypes.get(transport.nextInt(carFuelTypes.size())));
             case 1:
                 boolean hasSidecar = transport.nextBoolean();
-                return new Bike(model, speed, randomLicensePlate, hasSidecar, );
+                return new Bike(model, speed, randomLicensePlate, hasSidecar);
             case 2:
                 int loadCapacity = transport.nextInt(1000) + 1000;
                 return new Truck(model, speed, randomLicensePlate, loadCapacity);
@@ -34,4 +34,5 @@ public class TransportFactory {
 
     }
 }
+
 
