@@ -24,5 +24,7 @@ public class Task00 {
         deque.offerFirst("Первый");
         deque.offerLast("Последний");
         deque.pollFirst();
+
+
     }
 }
