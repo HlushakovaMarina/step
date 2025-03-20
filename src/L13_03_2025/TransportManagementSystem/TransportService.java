@@ -47,13 +47,34 @@ public class TransportService {
         }
         return listMap;
     }
-//    void test(){
+
+    //    void test(){
 //        List<Map.Entry<String,Integer>> m = new ArrayList<>();
 //        for (Map.Entry){
 //            m.add(entry);
 //        }
 //        m.sort(new TransportMapValueComparator());
 //    }
+    public List<String> findTop5MostPopularBrands() {
+        Map<String, Integer> brandCount = new HashMap<>();
+        List<String> top5Entries = new ArrayList<>();
+
+        for (Transport transport : transports) {
+            String brand = transport.getModel().toLowerCase();
+            brandCount.put(brand, brandCount.getOrDefault(brand, 0) + 1);
+        }
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(brandCount.entrySet());
+        list.sort(new Comparator<Map.Entry<String, Integer>>() {//ананимный компоратор
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return Integer.compare(o1.getValue(),o2.getValue());
+            }
+        });
+        for (int i = 0; i < Math.min(5, list.size()); i++) {
+            top5Entries.add(list.get(i).getKey());
+        }
+        return top5Entries;
+    }
 
 
 }
