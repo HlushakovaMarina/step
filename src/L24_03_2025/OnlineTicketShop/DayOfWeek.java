@@ -1,9 +1,17 @@
 package L24_03_2025.OnlineTicketShop;
 
 public enum DayOfWeek {
-    MONDAY("Понедельник", 1),
-    WEDNESDAY("Среда", 3),
-    FRIDAY("Пятница", 5),
-    SUNDAY("Воскресенье", 7);
-    int discountPercent;
+    MONDAY(0),
+    WEDNESDAY(10),
+    FRIDAY(15),
+    SUNDAY(20);
+    private final int discountPercent;
+
+    DayOfWeek(int discountPercent) {
+        this.discountPercent = discountPercent;
+    }
+
+    public int getDiscountPercent() {
+        return discountPercent;
+    }
 }

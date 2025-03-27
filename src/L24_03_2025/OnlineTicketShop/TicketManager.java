@@ -27,19 +27,34 @@ public class TicketManager {
     }
 
     public int totalRevenue() {
-        int totalMoney =0;
+        int totalMoney = 0;
         for (Ticket soldTicket : soldTickets) {
             int price = soldTicket.getType().getPrice();
             totalMoney += price;
         }
         return totalMoney;
     }
-    public Set<String> getVIPBuyers(){
+
+    public Set<String> getVIPBuyers() {
         Set<String> name = new HashSet<>();
         for (Ticket soldTicket : soldTickets) {
-            if (TicketType.VIP==soldTicket.getType());
+            if (TicketType.VIP == soldTicket.getType()) ;
             name.add(soldTicket.getBuyerName());
         }
         return name;
+    }
+
+    public int getDiscountedPrice(TicketType type, DayOfWeek day) {
+        int price = type.getPrice();
+        int discountPercent = day.getDiscountPercent();
+        return (price * (100-discountPercent) / 100);
+    }
+
+    public Map<TicketType, Integer> getAllDiscountedPrices(DayOfWeek day) {
+        Map<TicketType, Integer> discountedPrices = new HashMap<>();
+        for (TicketType type : TicketType.values()) {
+            discountedPrices.put(type, getDiscountedPrice(type, day));
+        }
+        return discountedPrices;
     }
 }

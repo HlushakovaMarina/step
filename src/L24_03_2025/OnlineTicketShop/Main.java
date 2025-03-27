@@ -6,6 +6,7 @@ import java.util.Set;
 public class Main {
     public static void main(String[] args) {
         TicketManager manager = new TicketManager();
+        TicketManager discount = new TicketManager();
 
         manager.sellTicket("Аня", TicketType.STUDENT);
         manager.sellTicket("Олег", TicketType.VIP);
@@ -30,5 +31,12 @@ public class Main {
             System.out.println(name);
         }
 
+        System.out.println("В среду цена STANDARD: " +
+                discount.getDiscountedPrice(TicketType.STANDARD,
+                        DayOfWeek.WEDNESDAY));
+
+        System.out.println("В воскресенье все цены: " +
+                discount.getAllDiscountedPrices(DayOfWeek.SUNDAY));
     }
+
 }
