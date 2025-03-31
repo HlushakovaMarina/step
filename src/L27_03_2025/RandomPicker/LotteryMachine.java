@@ -5,7 +5,7 @@ import java.util.*;
 public class LotteryMachine<T extends Participant> {
     private List<T> allItems = new ArrayList<>();
     private Queue<T> queue = new ArrayDeque<>();
-    private List<T> winners = new ArrayList<>();
+    private Set<T> winners = new HashSet<>();
     private boolean initialized;
     private final int MAX_WINNERS = 2;
 
@@ -49,6 +49,7 @@ public class LotteryMachine<T extends Participant> {
         }
 //        return queue.poll(); задача 1
         T winner = queue.poll();
+        allItems.remove(winner);
         winners.add(winner);
         return winner;
     }
@@ -86,7 +87,6 @@ public class LotteryMachine<T extends Participant> {
                 ageToCount.put("50+", ageToCount.get("50+") + 1);
             }
         }
-
         return ageToCount;
     }
 

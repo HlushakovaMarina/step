@@ -5,4 +5,7 @@ public class ParticipantFactory {
         Sex sex = Sex.valueOf(sexStr);
         return new Participant(name, age, sex, passportId);
     }
+
+    private ParticipantFactory() {
+    }
 }

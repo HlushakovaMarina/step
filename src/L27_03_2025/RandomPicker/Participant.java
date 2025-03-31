@@ -1,5 +1,7 @@
 package L27_03_2025.RandomPicker;
 
+import java.util.Objects;
+
 public class Participant {
     private final String name;
     private final int age;
@@ -28,5 +30,18 @@ public class Participant {
     public String getPassportId() {
         return passportId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Participant that = (Participant) o;
+        return Objects.equals(passportId, that.passportId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(passportId);
+    }
 }
+
 
