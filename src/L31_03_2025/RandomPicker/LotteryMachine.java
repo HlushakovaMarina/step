@@ -2,6 +2,7 @@ package L31_03_2025.RandomPicker;
 
 import L31_03_2025.RandomPicker.exception.DuplicateParticipantException;
 import L31_03_2025.RandomPicker.exception.MaxWinnersExceededException;
+import L31_03_2025.RandomPicker.exception.NotInitializedException;
 import L31_03_2025.RandomPicker.exception.UnderageException;
 
 import java.util.*;
@@ -11,17 +12,24 @@ public class LotteryMachine<T extends Participant> {
     private Queue<T> queue = new ArrayDeque<>();
     private Set<T> winners = new HashSet<>();
     private boolean initialized;
-    private final int MAX_WINNERS = 2;
+    private int MAX_WINNERS = 5;
+
+    public Set<T> getWinners() {
+        return new HashSet<>(winners);
+    }
+    public void setMAX_WINNERS(int max) {
+        this.MAX_WINNERS = max;
+    }
 
     public void add(T item) throws UnderageException, DuplicateParticipantException {
         if (initialized) {
             return;
         }
-        if (item.getAge() < 18){
-            throw new UnderageException("Участнику нет 18");
+        if (item.getAge() < 18) {
+            throw new UnderageException("Участнику нет 18" + item.getName());
         }
-        if(allItems.contains(item.getPassportId())){
-            throw new DuplicateParticipantException("Участник с таким паспортом уже существует")
+        if (allItems.contains(item.getPassportId())) {
+            throw new DuplicateParticipantException("Участник с таким паспортом уже существует" + item.getPassportId());
         }
         allItems.add(item);
     }
@@ -44,9 +52,8 @@ public class LotteryMachine<T extends Participant> {
             return null;
         }
         if (winners.size() >= MAX_WINNERS) {
-            throw new MaxWinnersExceededException("Количество победителей превысило лимит");
+            throw new MaxWinnersExceededException("Количество победителей превысило лимит" + MAX_WINNERS);
         }
-
 //        return queue.poll(); задача 1
         T winner = queue.poll();
         allItems.remove(winner);
@@ -54,7 +61,10 @@ public class LotteryMachine<T extends Participant> {
         return winner;
     }
 
-    public void reset() {
+    public void reset() throws NotInitializedException {
+        if (!initialized) {
+            throw new NotInitializedException("Розыгрыш еще не начинался!");
+        }
         List<T> eligibleParticipants = new ArrayList<>(allItems);
         eligibleParticipants.removeAll(winners);
         if (eligibleParticipants.isEmpty()) {

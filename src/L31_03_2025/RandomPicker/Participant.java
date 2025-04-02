@@ -27,7 +27,7 @@ public class Participant {
         return sex;
     }
 
-    public boolean getPassportId() {
+    public String getPassportId() {
         return passportId;
     }
 
