@@ -13,8 +13,8 @@ public class Main00 {
                 Pet pet = PetFactory.next();
                 owner.addPet(pet);
             }
-            owners.add(owner);
         }
+            owners.add(owner);
 
         for (Owner owner : owners) {
             System.out.println(owner);

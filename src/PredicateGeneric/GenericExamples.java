@@ -2,6 +2,7 @@ package PredicateGeneric;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GenericExamples {
     // Возвращает первый элемент списка
@@ -29,7 +30,7 @@ public class GenericExamples {
     public static <T> int countOccurrences(List<T> list, T element) {
         int count = 0;
         for (T item : list) {
-            if (item.equals(element)) {
+            if (Objects.equals(item, element)) {
                 count++;
             }
         }
@@ -39,7 +40,7 @@ public class GenericExamples {
     // Проверяет, есть ли элемент в массиве
     public static <T> boolean contains(T[] array, T element) {
         for (T item : array) {
-            if (item.equals(element)) {
+            if (Objects.equals(item, element)) {
                 return true;
             }
         }

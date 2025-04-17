@@ -16,7 +16,7 @@ public class Main00 {
         List<Integer> numbers = Arrays.asList(2, 4, 6, 8, 10);
         List<Integer> numbers1 = Arrays.asList(2, 4, -6, 8, 10);
         List<Integer> ages = List.of(27, 18, 30, 19, 42);
-        Predicate<Integer> isAdult = age -> age >= 18;
+        Predicate<Integer> isAdult = age -> age >= 18; //TODO пишем коментарий
 
         // есть ли строки, начинающиеся с "A"
         boolean anyStartsWithA = anyMatch(strings, s -> s.startsWith("А"));
