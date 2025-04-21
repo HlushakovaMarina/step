@@ -57,8 +57,8 @@ public class Task00 {
         Apple apple1 = appleBiFunction.apply(200, GREEN);
 
         apples.sort((a3, a4) -> a3.getWeight().compareTo(a4.getWeight()));
-        Comparator<Apple> comparing = Comparator.comparing((Apple a2) -> a2.getWeight();
-        apples.sort(comparing);
+//        Comparator<Apple> comparing = Comparator.comparing((Apple a2) -> a2.getWeight();
+//        apples.sort(comparing);
         apples.sort(Comparator.comparing(Apple::getWeight).reversed());// в обратную сторону сортировка через reversed
         apples.sort(Comparator.comparing(Apple::getWeight).reversed().thenComparing(Apple::getColor));
         Predicate<Apple> predicate = (Apple a5) -> a5.getWeight() == 100;
