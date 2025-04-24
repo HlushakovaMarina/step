@@ -50,15 +50,15 @@ public class Main {
 
         // 6. Печать со скидкой
         System.out.println("6. Цена со скидкой:");
-        product.forEach(item -> System.out.println(
-                item.getName() + ": " + (item.getPrice() * 0.9)
+        product.forEach(p1 -> System.out.println(
+                p1.getName() + ": " + (p1.getPrice() * 0.9)
                         + " Br"));
         // 7. Есть ли товар дешевле 1 Br?
-        boolean anyCheaperThan1 = product.stream().anyMatch(item -> item.getPrice() < 1.0);
+        boolean anyCheaperThan1 = product.stream().anyMatch(p2 -> p2.getPrice() < 1.0);
         System.out.println("7. Есть ли товар дешевле 1 Br? " + anyCheaperThan1);
 
         // 8. Все ли товары дороже 0?
-        boolean allPositivePrices = product.stream().allMatch(item -> item.getPrice() > 0);
+        boolean allPositivePrices = product.stream().allMatch(p -> p.getPrice() > 0);
         System.out.println("8. Все ли товары дороже 0? " + allPositivePrices);
 
         // 9. Первая овощная позиция
