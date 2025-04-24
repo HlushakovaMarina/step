@@ -1,9 +1,6 @@
 package L21_04_2025.Magasin;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -16,6 +13,22 @@ public class Main {
                 new GroceryItem("помидор", Category.VEGETABLE, 6.78, true),
                 new GroceryItem("киви", Category.FRUIT, 7.15, true),
                 new GroceryItem("арбуз", Category.FRUIT, 7.69, true));
+
+        List<Customer> customers = List.of(
+                new Customer("Андрей", List.of(
+                        new GroceryItem("Milk", Category.DAIRY, 1.2, true),
+                        new GroceryItem("Bread", Category.BAKERY, 0.8, true)
+                )),
+                new Customer("Ирина", List.of(
+                        new GroceryItem("Apple", Category.FRUIT, 0.5, true),
+                        new GroceryItem("Wine", Category.BEVERAGE, 5.0, false),
+                        new GroceryItem("Cheese", Category.DAIRY, 3.0, true)
+                )),
+                new Customer("Сергей", List.of(
+                        new GroceryItem("Eggs", Category.DAIRY, 2.0, true),
+                        new GroceryItem("Chocolate", Category.BAKERY, 1.5, false)
+                )),
+        new Customer("Катя", List.of()));
 
         // 1.Молочка
         List<GroceryItem> dairys = product.stream()
@@ -73,6 +86,30 @@ public class Main {
                 .distinct()
                 .collect(Collectors.toList());
         System.out.println("10. Уникальные категории: " + uniqueCategories);
+
+        // 1.  flatMap по клиентам
+                List<GroceryItem> c1 = customers.stream()
+                .flatMap(l -> l.getShoppingList().stream())
+                .collect(Collectors.toList());
+        System.out.println(c1);
+
+        // 2.Сколько всего покупателей?
+        long count = customers.stream().map(Customer::getName).count();
+        System.out.println(count);
+
+        // 3.Самый щедрый покупатель
+        Optional<Customer> max = customers.stream().max(Comparator.comparingDouble(c -> c.getShoppingList().stream().mapToDouble(GroceryItem::getPrice).sum()));
+        System.out.println(max);
+
+        // 4. Уникальные товары
+        Set<String> collect = customers.stream().flatMap(customer -> customer.getShoppingList().stream()).map(GroceryItem::getName).collect(Collectors.toSet());
+        System.out.println(collect);
+
+        // 5. Таблица покупок по категориям
+
+        // 6. Optional — покупатель без покупок
+        Optional<Customer> emptyCustom = Optional.empty().map(Customer::getShoppingList).
     }
-    }
+
+}
 
