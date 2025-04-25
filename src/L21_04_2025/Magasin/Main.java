@@ -91,25 +91,49 @@ public class Main {
                 List<GroceryItem> c1 = customers.stream()
                 .flatMap(l -> l.getShoppingList().stream())
                 .collect(Collectors.toList());
-        System.out.println(c1);
+        System.out.println("Все покупки: " + c1);
 
-        // 2.Сколько всего покупателей?
+        // 2. Сколько всего покупателей?
         long count = customers.stream().map(Customer::getName).count();
-        System.out.println(count);
+        System.out.println("Количество покупателей: " + count);
 
-        // 3.Самый щедрый покупатель
-        Optional<Customer> max = customers.stream().max(Comparator.comparingDouble(c -> c.getShoppingList().stream().mapToDouble(GroceryItem::getPrice).sum()));
-        System.out.println(max);
+        // 3. Самый щедрый покупатель
+        Optional<Customer> max = customers.stream()
+                .max(Comparator.comparingDouble(c -> c.getShoppingList().stream()
+                        .mapToDouble(GroceryItem::getPrice).sum()));
+        System.out.println("Самый щедрый покупатель: " + max);
 
         // 4. Уникальные товары
-        Set<String> collect = customers.stream().flatMap(customer -> customer.getShoppingList().stream()).map(GroceryItem::getName).collect(Collectors.toSet());
-        System.out.println(collect);
+        Set<String> collect = customers.stream()
+                .flatMap(customer -> customer.getShoppingList().stream())
+                .map(GroceryItem::getName).collect(Collectors.toSet());
+        System.out.println("Уникальные товары: " + collect);
 
         // 5. Таблица покупок по категориям
 
         // 6. Optional — покупатель без покупок
-        Optional<Customer> emptyCustom = Optional.empty().map(Customer::getShoppingList).
-    }
+                Optional<Customer> emptyCustomer = customers.stream()
+                .filter(customer -> customer.getShoppingList().isEmpty())
+                .findFirst();
+        System.out.println("Покупатель без покупок: " + emptyCustomer);
 
+        // 7. Collectors.summarizingDouble для каждого клиента
+        Map<String, DoubleSummaryStatistics> customerSumStatistics = customers.stream()
+                .collect(Collectors.toMap(Customer::getName,customer -> customer.getShoppingList()
+                        .stream().collect(Collectors.summarizingDouble(GroceryItem::getPrice))));
+        System.out.println("Суммарная статистика цен для каждого покупателя: " + customerSumStatistics);
+
+        // 8. peek - уведомления
+        customers.stream()
+                .peek(c -> System.out.println("Обрабатываем " + c.getName()))
+                .forEach(System.out::println);
+
+        // 9. skip + limit по клиентам
+        List<Customer> sequence = customers.stream()
+                .skip(1)
+                .limit(2)
+                .toList();
+        System.out.println("Пропустили первого и выбрали следующих двоих: " + sequence);
+    }
 }
 
