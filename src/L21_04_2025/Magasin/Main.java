@@ -28,7 +28,7 @@ public class Main {
                         new GroceryItem("Eggs", Category.DAIRY, 2.0, true),
                         new GroceryItem("Chocolate", Category.BAKERY, 1.5, false)
                 )),
-        new Customer("Катя", List.of()));
+                new Customer("Катя", List.of()));
 
         // 1.Молочка
         List<GroceryItem> dairys = product.stream()
@@ -88,7 +88,7 @@ public class Main {
         System.out.println("10. Уникальные категории: " + uniqueCategories);
 
         // 1.  flatMap по клиентам
-                List<GroceryItem> c1 = customers.stream()
+        List<GroceryItem> c1 = customers.stream()
                 .flatMap(l -> l.getShoppingList().stream())
                 .collect(Collectors.toList());
         System.out.println("Все покупки: " + c1);
@@ -110,16 +110,23 @@ public class Main {
         System.out.println("Уникальные товары: " + collect);
 
         // 5. Таблица покупок по категориям
+        Map<Category, Set<String>> map = customers.stream()
+                .flatMap(c->c.getShoppingList().stream())
+                .collect(Collectors.groupingBy(
+                        GroceryItem::getCategory,
+                        Collectors.flatMapping(item -> customers.stream()
+                                .filter(c -> c.getShoppingList().contains(item))
+                                .map(Customer::getName), Collectors.toSet())));
 
         // 6. Optional — покупатель без покупок
-                Optional<Customer> emptyCustomer = customers.stream()
+        Optional<Customer> emptyCustomer = customers.stream()
                 .filter(customer -> customer.getShoppingList().isEmpty())
                 .findFirst();
         System.out.println("Покупатель без покупок: " + emptyCustomer);
 
         // 7. Collectors.summarizingDouble для каждого клиента
         Map<String, DoubleSummaryStatistics> customerSumStatistics = customers.stream()
-                .collect(Collectors.toMap(Customer::getName,customer -> customer.getShoppingList()
+                .collect(Collectors.toMap(Customer::getName, customer -> customer.getShoppingList()
                         .stream().collect(Collectors.summarizingDouble(GroceryItem::getPrice))));
         System.out.println("Суммарная статистика цен для каждого покупателя: " + customerSumStatistics);
 

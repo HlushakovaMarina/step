@@ -1,5 +1,9 @@
 package L21_04_2025;
 
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.time.temporal.ChronoField;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -70,7 +74,7 @@ public class Task00 {
                 .findFirst();
         int sum = menu.stream().mapToInt(Dish::getCalories)
                 .sum();//ищем сумму всех колорий
-        int i = menu.stream().mapToInt(Dish::getCalories)
+        int i2 = menu.stream().mapToInt(Dish::getCalories)
                 .max().orElse(1);
         Map<Type, List<Dish>> collect1 = menu.stream().collect(Collectors.groupingBy(Dish::getType));
         System.out.println(collect1);
@@ -153,18 +157,58 @@ public class Task00 {
                 .collect(Collectors.groupingBy(Dish::getType, Collectors.counting()));
         System.out.println(collect11);
 
-        Map<Type,Optional<Dish>> mapOpt = menu.stream()
-                .collect(Collectors.groupingBy(Dish::getType,Collectors.maxBy(Comparator.comparingInt(Dish::getCalories))));
+        Map<Type, Optional<Dish>> mapOpt = menu.stream()
+                .collect(Collectors.groupingBy(Dish::getType, Collectors.maxBy(Comparator.comparingInt(Dish::getCalories))));
         System.out.println(mapOpt);
 
-        Map<Type,Dish> mapDish = menu.stream()
-                .collect(Collectors.groupingBy(Dish::getType,Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparingInt(Dish::getCalories)),Optional::get)));
+        Map<Type, Dish> mapDish = menu.stream()
+                .collect(Collectors.groupingBy(Dish::getType, Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparingInt(Dish::getCalories)), Optional::get)));
         System.out.println(mapDish);
 
         //проверка на null
         Optional<Integer> i1 = Optional.ofNullable(nullDish).map(Dish::getCalories);
         System.out.println(i1);
 //        System.out.println(calories(menu));
+
+        StringBuilder sb = new StringBuilder("abc");
+        for (int i = 0; i < 1000; i++) {
+            sb.append("1");
+                    }
+        System.out.println(sb);
+
+        LocalDate now = LocalDate.now();
+        System.out.println(now);
+        int year = now.getYear();
+        System.out.println(year);
+        Month month=now.getMonth();
+        int i = month.get(ChronoField.MONTH_OF_YEAR);
+        System.out.println(i);
+        int dayOfMonth = now.getDayOfMonth();
+        System.out.println(dayOfMonth);
+
+        LocalDate localDate = LocalDate.of(2024, 11, 2);
+        String displayName = localDate.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        System.out.println(displayName);
+
+        LocalTime lt= LocalTime.of(13,14,44);
+        LocalTime parse = LocalTime.parse("13:34:12");
+        LocalDate date = LocalDate.parse("2025-02-22");
+        System.out.println(date);
+
+        LocalDateTime ldt = LocalDateTime.of(2017,Month.NOVEMBER,21,13,35,29);
+//        LocalDateTime vst = LocalDateTime.now(ZoneId.of("VST"));
+        System.out.println(ldt);
+
+        Duration between = Duration.between(LocalTime.of(15, 15, 15), LocalTime.of(16, 16, 16));
+        long minutes = between.toMinutes();
+        System.out.println(minutes);
+
+        LocalDate date1 = date.withYear(2000);
+        System.out.println(date1);
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate parse1 = LocalDate.parse("10/02/2009", dateTimeFormatter);
+        System.out.println(parse1);
     }
 
 //    public static List<String> calories(List<Dish> menu) {
