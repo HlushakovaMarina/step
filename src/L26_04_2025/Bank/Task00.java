@@ -3,6 +3,7 @@ package L26_04_2025.Bank;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Task00 {
@@ -80,6 +81,12 @@ public class Task00 {
                 .anyMatch(transaction -> transaction.getTransactions().isEmpty());
         System.out.println(b);
 
-
+// 10. **Владельцы с депозитами**
+        Set<String> collect2 = accounts.stream()
+                .filter(account -> account.getTransactions().stream()
+                        .anyMatch(transaction -> transaction.getType() == Type.DEPOSIT))
+                .map(BankAccount::getOwnerName)
+                .collect(Collectors.toSet());
+        System.out.println(collect2);
     }
 }
