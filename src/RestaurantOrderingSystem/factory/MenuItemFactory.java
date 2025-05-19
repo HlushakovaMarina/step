@@ -1,7 +1,7 @@
 package RestaurantOrderingSystem.factory;
 
 
-import RestaurantOrderingSystem.model.Category;
+import RestaurantOrderingSystem.Enum.Category;
 import RestaurantOrderingSystem.model.MenuItem;
 
 public interface MenuItemFactory {

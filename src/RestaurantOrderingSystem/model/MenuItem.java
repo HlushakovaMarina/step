@@ -1,5 +1,7 @@
 package RestaurantOrderingSystem.model;
 
+import RestaurantOrderingSystem.Enum.Category;
+
 public class MenuItem {
     private final int id;
     private final String name;

@@ -1,5 +1,7 @@
 package RestaurantOrderingSystem.model;
 
+import RestaurantOrderingSystem.Enum.PaymentMethod;
+
 public class Payment {
     private final int id;
     private final double amount;
