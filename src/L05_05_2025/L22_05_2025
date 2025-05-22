@@ -1,0 +1,44 @@
+0. Получить список всех стран с их столицами, континентами и языками
+SELECT c.country_name, con.continent_name, c.capital, l.language_name
+FROM countries c
+JOIN continents con ON c.continent_id = con.continent_id
+JOIN country_languages cl ON c.country_id = cl.country_id
+JOIN languages l ON l.language_id = cl.language_id;
+
+1. Все страны с населением более 100 миллионов. Сортировка от крупных к менее.
+SELECT country_name, population FROM countries c
+WHERE population > 100000000
+
+2. Города с населением более 5 миллионов (не столицы).  Сортировка от крупных к менее.
+SELECT city_name,  population
+FROM cities WHERE population > 5000000 AND NOT is_capital
+ORDER BY population DESC
+
+3. Страны в Европе
+SELECT country_id, c.country_name FROM countries c
+INNER JOIN continents con ON con.continent_id = c.continent_id
+WHERE continent_name = 'Europe'
+
+4. Количество городов в каждой стране
+SELECT country_name, COUNT(city_name) FROM cities c
+INNER JOIN countries con ON c.country_id = con.country_id
+GROUP BY country_name
+
+5. Все официальные языки в Швейцарии
+SELECT is_official, language_name FROM countries con
+INNER JOIN country_languages cl ON con.country_id = cl.country_id
+INNER JOIN languages l ON cl.language_id = l.language_id
+WHERE country_name = 'Switzerland'
+
+6. Достопримечательности культурного типа (Cultural)
+SELECT landmark_name FROM landmarks
+WHERE type = 'Cultural'
+
+7. Среднее население городов по странам. Сортировка от крупных к менее.
+SELECT country_name, AVG(c.population) FROM countries con INNER JOIN cities c ON con.country_id = c.country_id
+GROUP BY country_name
+ORDER BY AVG(c.population)
+
+8. Самые древние города (основаны до 1000 года) Сортировка от древних к менее.
+SELECT city_name, foundation_year FROM cities WHERE foundation_year < 1000
+ORDER BY foundation_year
