@@ -42,3 +42,49 @@ ORDER BY AVG(c.population)
 8. Самые древние города (основаны до 1000 года) Сортировка от древних к менее.
 SELECT city_name, foundation_year FROM cities WHERE foundation_year < 1000
 ORDER BY foundation_year
+
+18. Вывести список всех стран с их крупнейшим городом
+SELECT DISTINCT ON (c.country_name) c.country_name,ci.city_name, ci.population
+FROM countries c
+INNER JOIN cities ci ON c.country_id = ci.country_id
+ORDER BY c.country_name, ci.population DESC;
+
+19. Найти топ-3 страны с наибольшей средней плотностью населения в их городах
+SELECT c.country_name, AVG(ci.population/c.area_sq_km) AS avg_city_density
+FROM countries c
+INNER JOIN cities ci ON c.country_id = ci.country_id
+WHERE c.area_sq_km > 0
+GROUP BY c.country_name
+ORDER BY avg_city_density DESC
+LIMIT 3;
+
+20. Найти все континенты, где суммарное население стран больше 1 миллиарда, и вывести их страны
+SELECT con.continent_name, c.country_name
+FROM continents con
+INNER JOIN countries c ON con.continent_id = c.continent_id
+WHERE con.continent_id IN (
+SELECT c2.continent_id
+FROM countries  c2
+GROUP BY c2.continent_id
+HAVING SUM(c2.population) > 1000000000
+)
+ORDER BY con.continent_name, c.country_name;
+
+
+* удаление из таблицы города с населением < 250000
+DELETE FROM cities
+WHERE population < 250000
+RETURNING city_name, population
+
+* изменение строки, увеличение числинности населения в москве на 1000000
+UPDATE cities SET population = population + 1000000
+WHERE city_name = 'Moscow'
+RETURNING city_name, population
+
+* view
+CREATE VIEW evropian_capitals AS
+SELECT cit.city_name, c.country_name, cit.population
+FROM countries c
+INNER JOIN continents con ON c.continent_id = con.continent_id
+INNER JOIN cities cit ON c.country_id = cit.country_id
+WHERE continent_name = 'Europe' AND is_capital;
