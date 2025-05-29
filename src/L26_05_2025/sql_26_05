@@ -65,42 +65,42 @@
 
 ---
 -- Таблица Пользователи (Users)
-CREATE TABLE Users (
-    UserID INT PRIMARY KEY SERIAL,
-    Name VARCHAR(255) NOT NULL,
-    Email VARCHAR(255) UNIQUE NOT NULL,
-    RegistrationDate DATETIME DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE Users1 (
+    user_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    registrationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Таблица Места проведения (Venues)
-CREATE TABLE Venues (
-    VenueID INT PRIMARY KEY SERIAL,
-    Name VARCHAR(255) NOT NULL,
-    Address VARCHAR(255) NOT NULL,
-    Capacity INT NOT NULL CHECK (Capacity > 0)
+CREATE TABLE venues (
+    venue_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    capacity INT NOT NULL CHECK (Capacity > 0)
 );
 
 -- Таблица Мероприятия (Events)
-CREATE TABLE Events (
-    EventID INT PRIMARY KEY SERIAL,
-    Name VARCHAR(255) NOT NULL,
-    DateTime DATETIME NOT NULL CHECK (DateTime > NOW()),
-    VenueID INT,
-    TotalSeats INT NOT NULL CHECK (TotalSeats > 0),
-    TicketPrice DECIMAL(10, 2) NOT NULL CHECK (TicketPrice >= 0),
-    FOREIGN KEY (VenueID) REFERENCES Venues(VenueID)
+CREATE TABLE events (
+    event_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    Timestamp TIMESTAMP NOT NULL CHECK (Timestamp > NOW()),
+    venue_id INT,
+    totalSeats INT NOT NULL CHECK (TotalSeats > 0),
+    ticketPrice DECIMAL(10, 2) NOT NULL CHECK (TicketPrice >= 0),
+    FOREIGN KEY (venue_id) REFERENCES Venues(venue_id)
 );
 
 -- Таблица Бронирования (Bookings)
-CREATE TABLE Bookings (
-    BookingID INT PRIMARY KEY SERIAL,
-    UserID INT,
-    EventID INT,
-    SeatsBooked INT NOT NULL CHECK (SeatsBooked > 0),
-    BookingDate DATETIME DEFAULT CURRENT_TIMESTAMP,
-    Status VARCHAR(50) CHECK (Status IN ('confirmed', 'canceled', 'pending')),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (EventID) REFERENCES Events(EventID)
+CREATE TABLE bookings (
+    booking_id SERIAL PRIMARY KEY,
+    user_id INT,
+    event_id INT,
+    seatsBooked INT NOT NULL CHECK (SeatsBooked > 0),
+    booking_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(50) CHECK (Status IN ('confirmed', 'canceled', 'pending')),
+    FOREIGN KEY (user_id) REFERENCES Users1(user_id),
+    FOREIGN KEY (event_id) REFERENCES events(event_id)
 );
 
 2. Вставка тестовых данных

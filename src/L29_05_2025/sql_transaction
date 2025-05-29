@@ -1,0 +1,46 @@
+--
+UPDATE accounts SET balance = balance -100
+WHERE user_id = 1;
+
+UPDATE accounts SET balance = balance +100
+WHERE user_id = 2;
+
+-- транзакция
+BEGIN;
+UPDATE accounts SET balance = balance -100
+WHERE user_id = 1;
+
+UPDATE accounts SET balance = balance +100
+WHERE user_id = 2;
+
+COMMIT;
+
+
+--
+BEGIN;
+UPDATE accounts SET balance = balance -100
+WHERE user_id = 1;
+
+SAVEPOINT transfer_point;
+
+UPDATE accounts SET balance = balance +100
+WHERE user_id = 2;
+
+ROLLBACK TO SAVEPOINT transfer_point;
+
+COMMIT;
+
+--ИЗОЛИРОВАЛИ доступ
+BEGIN;
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+UPDATE accounts SET balance = balance -100
+WHERE user_id = 1;
+
+SAVEPOINT transfer_point;
+
+UPDATE accounts SET balance = balance +100
+WHERE user_id = 2;
+
+ROLLBACK TO SAVEPOINT transfer_point;
+
+COMMIT;
