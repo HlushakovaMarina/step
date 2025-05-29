@@ -1,0 +1,35 @@
+1) LEFT JOIN
+SELECT u.full_name, o.created_at FROM users u
+LEFT JOIN orders o ON u.id = o.user_id
+
+2)RIGHT JOIN
+SELECT u.full_name AS "ФИО", o.created_at AS "Время заказа" FROM users u
+RIGHT JOIN orders o ON u.id = o.user_id
+
+3)INNER JOIN
+SELECT u.full_name AS "ФИО", o.created_at AS "Время заказа" FROM users u
+INNER JOIN orders o ON u.id = o.user_id
+
+4)FULL OUTER JOIN
+SELECT u.full_name AS "ФИО", o.created_at AS "Время заказа" FROM users u
+FULL OUTER JOIN orders o ON u.id = o.user_id
+
+5)order by 2 сортировка по колонке (2)
+SELECT u.full_name, SUM(o.total) FROM users u LEFT JOIN orders o
+ON u.id = o.user_id
+GROUP BY full_name
+ORDER BY 2
+
+6) HAVING используется только после группировки,  и можно использовать и
+where and HAVING!!
+SELECT u.full_name, SUM(o.total) FROM users u LEFT JOIN orders o
+ON u.id = o.user_id
+GROUP BY full_name
+HAVING SUM(o.total) > 350
+
+7) максимальная сумма заказа с выведение одного заказчика
+SELECT u.full_name, MAX(o.total) FROM users u JOIN orders o
+ON u.id = o.user_id
+GROUP BY full_name
+ORDER BY 2 DESC
+LIMIT 1

@@ -1,0 +1,90 @@
+0. Получить список всех стран с их столицами, континентами и языками
+SELECT c.country_name, con.continent_name, c.capital, l.language_name
+FROM countries c
+JOIN continents con ON c.continent_id = con.continent_id
+JOIN country_languages cl ON c.country_id = cl.country_id
+JOIN languages l ON l.language_id = cl.language_id;
+
+1. Все страны с населением более 100 миллионов. Сортировка от крупных к менее.
+SELECT country_name, population FROM countries c
+WHERE population > 100000000
+
+2. Города с населением более 5 миллионов (не столицы).  Сортировка от крупных к менее.
+SELECT city_name,  population
+FROM cities WHERE population > 5000000 AND NOT is_capital
+ORDER BY population DESC
+
+3. Страны в Европе
+SELECT country_id, c.country_name FROM countries c
+INNER JOIN continents con ON con.continent_id = c.continent_id
+WHERE continent_name = 'Europe'
+
+4. Количество городов в каждой стране
+SELECT country_name, COUNT(city_name) FROM cities c
+INNER JOIN countries con ON c.country_id = con.country_id
+GROUP BY country_name
+
+5. Все официальные языки в Швейцарии
+SELECT is_official, language_name FROM countries con
+INNER JOIN country_languages cl ON con.country_id = cl.country_id
+INNER JOIN languages l ON cl.language_id = l.language_id
+WHERE country_name = 'Switzerland'
+
+6. Достопримечательности культурного типа (Cultural)
+SELECT landmark_name FROM landmarks
+WHERE type = 'Cultural'
+
+7. Среднее население городов по странам. Сортировка от крупных к менее.
+SELECT country_name, AVG(c.population) FROM countries con INNER JOIN cities c ON con.country_id = c.country_id
+GROUP BY country_name
+ORDER BY AVG(c.population)
+
+8. Самые древние города (основаны до 1000 года) Сортировка от древних к менее.
+SELECT city_name, foundation_year FROM cities WHERE foundation_year < 1000
+ORDER BY foundation_year
+
+18. Вывести список всех стран с их крупнейшим городом
+SELECT DISTINCT ON (c.country_name) c.country_name,ci.city_name, ci.population
+FROM countries c
+INNER JOIN cities ci ON c.country_id = ci.country_id
+ORDER BY c.country_name, ci.population DESC;
+
+19. Найти топ-3 страны с наибольшей средней плотностью населения в их городах
+SELECT c.country_name, AVG(ci.population/c.area_sq_km) AS avg_city_density
+FROM countries c
+INNER JOIN cities ci ON c.country_id = ci.country_id
+WHERE c.area_sq_km > 0
+GROUP BY c.country_name
+ORDER BY avg_city_density DESC
+LIMIT 3;
+
+20. Найти все континенты, где суммарное население стран больше 1 миллиарда, и вывести их страны
+SELECT con.continent_name, c.country_name
+FROM continents con
+INNER JOIN countries c ON con.continent_id = c.continent_id
+WHERE con.continent_id IN (
+SELECT c2.continent_id
+FROM countries  c2
+GROUP BY c2.continent_id
+HAVING SUM(c2.population) > 1000000000
+)
+ORDER BY con.continent_name, c.country_name;
+
+
+* удаление из таблицы города с населением < 250000
+DELETE FROM cities
+WHERE population < 250000
+RETURNING city_name, population
+
+* изменение строки, увеличение числинности населения в москве на 1000000
+UPDATE cities SET population = population + 1000000
+WHERE city_name = 'Moscow'
+RETURNING city_name, population
+
+* view
+CREATE VIEW evropian_capitals AS
+SELECT cit.city_name, c.country_name, cit.population
+FROM countries c
+INNER JOIN continents con ON c.continent_id = con.continent_id
+INNER JOIN cities cit ON c.country_id = cit.country_id
+WHERE continent_name = 'Europe' AND is_capital;
