@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<style>
+    div.container {
+    width:100%;
+    overflow: auto;
+    }
+    div.container div {
+    width:33%;
+    float:left;
+    }
+    div.container div p {
+    font-weight:bold;
+    }
+    table, th, td{
+        border: 1px solid black;
+        text-align: center;
+    }
+    table{
+        width: 100%;
+    }
+    th{
+       background-color: rgb(155, 155, 155); 
+    }
+#style_red{
+    background-color: red;
+}
+.age_bold {
+    font-weight: bold;
+    background-color: pink;
+}
+.line{
+    border-width: 5px;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<p>Тут не жирный</p>
+<em>Здесь курсив</em><br>
+<strong>Тут жирный шрифт</strong>
+<div class="container">
+<div style="background-color:#0d8bef;">
+    <h2>Минск</h2>
+    <p><strong>Минск столица Беларуси</strong></p>
+    <p>Население 9 млн</p>
+</div>
+<div style="background-color:#FFC0C7;">
+    <h2>Москва</h2>
+    <p>Москва столица России</p>
+    <p>Население 145 млн</p>
+</div>
+<div style="background-color:#D9EEE1;">
+    <h2>Варшава</h2>
+    <p>Варшава столица Польши</p>
+    <p>Население 37 млн</p>
+</div>
+</div>
+<div class="mytable">
+    <table>
+        <tr>
+            <th>Person 1</th>
+            <th>Person 2</th>
+            <th>Person 3</th>
+        </tr>
+        <tr>
+            <td id="style_red">Marina</td>
+            <td>Ivan</td>
+            <td>Kira</td>
+        </tr>
+        <tr>
+            <td class="age_bold">32</td>
+            <td class="age_bold">47</td>
+            <td class="age_bold">19</td>
+        </tr>
+    </table>
+</div>
+<p>Привет</p>
+<hr class="line" color="red" size="5px">
+<p>Пока</p>
+</body>
+</html>
