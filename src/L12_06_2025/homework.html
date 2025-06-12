@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/register" method="post">
+        <label for="username">Имя:</label>
+        <input type="text" name="username" placeholder="Ваше имя">
+
+        <label for="user_email">Email:</label>
+        <input type="email" name="user_email"placeholder="Ваш email">
+
+        <label for="user_password">Пароль:</label>
+        <input type="password" name="user_password" placeholder="Ваш пароль">
+
+        <label for="gender">Мужской</label>
+        <input type="radio" name="gender" value="male" checked>
+
+        <label for="gender">Женский</label>
+        <input type="radio" name="gender" value="famale" checked>
+
+        <input type="checkbox" name="hobby" value="musics">Музыка
+        <input type="checkbox" name="hobby" value="sports">Спорт
+        <input type="checkbox" name="hobby" value="reading">Чтение
+
+        <select name="country" id="">
+            <option value="rossia">Россия</option>
+            <option value="belarus" selected>Беларусь</option>
+            <option value="usa">США</option>
+        </select>
+        <button type="button" onclick="document.getElementById('my_dialog').showModal()"
+        class="btn">Зарегистрироваться</button>
+    </form>
+    <dialog open id="my_dialog">
+        <p>
+            Регистрация успешна!
+        </p>
+        <button type="button" onclick="this.parentEltment.close()">Закрыть</button>
+    </dialog>
+</body>
+</html>

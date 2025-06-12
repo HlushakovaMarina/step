@@ -1,0 +1,28 @@
+.menu{
+    background-color: red;
+    padding: 10px;
+}
+.menu li {
+    list-style: none;
+}
+.menu li a {
+    text-decoration: none;
+    color: green;
+}
+.menu li a:hover {
+    color: white;
+}
+form {
+width: 400px;
+padding: 20px;
+margin: 20px;
+background-color: grey;
+border-radius: 20px;
+border: 3px solid black;
+}
+label{
+    display: block;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
