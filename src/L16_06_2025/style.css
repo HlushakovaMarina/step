@@ -1,0 +1,21 @@
+.block {
+    border: 2px, solid black;
+    margin: 2px;
+    width: 100px;
+}
+.container{
+display: flex;
+flex-direction:row;
+justify-content: center;
+width: 300px;
+height: 300px;
+border: 1px,solid rebeccapurple;
+align-items:flex-start;
+gap: 20px;
+}
+.grow{
+
+    flex-basis: 50px;
+    align-self: flex-end;
+    order: 1;
+}
