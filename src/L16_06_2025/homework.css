@@ -2,20 +2,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
-}
+    }
 .description{
-    background-color: grey;
+    background-color: #b1b1b1;
     border-radius: 3px;
 }
 .cards{
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 500px;
 }
 .avatar{
     float: left;
+    border-radius: 10px;
+    height: 500px;
+}
+.btn {
+background-color: blue;
+color: white;
+border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.info{
+justify-content:left;
 }
 @media (max-wight: 400px){
-
 }
