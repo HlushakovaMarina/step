@@ -1,22 +1,77 @@
+body {
+font-family: sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100px;
+background-color: #eee;
+}
 .container{
+    position: relative;
+    width: 350px;
+    height: 570px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     }
-.description{
-    background-color: #b1b1b1;
-    border-radius: 3px;
+h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
+    }
+.info{
+display: flex;
+flex-direction: column;
+margin-bottom: 10px;
+padding: 10px;
+background-color: #f0f0f0;
+border-radius: 3px;
+}
+.info p {
+font-size: 14px;
+margin: 5px 0;
+text-align: left;
 }
 .cards{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 500px;
+    height: 550px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+.buttons {
+display: flex;
+justify-content: space-around;
+width: 100%;
+}
+button {
+background-color: blue;
+color: white;
+padding: 10px 15px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 14px;
+transition: background-color 0.3s;
+}
+button:hover {
+background-color: #f10ee2d9;
 }
 .avatar{
-    float: left;
-    border-radius: 10px;
-    height: 500px;
+width: 150px;
+height: 150px;
+border-radius: 50%;
+float: left;
+margin-right: 15px;
+    display: block;
+    margin: 0 auto;
 }
 .btn {
 background-color: blue;
@@ -26,8 +81,24 @@ border: none;
     border-radius: 5px;
     cursor: pointer;
 }
-.info{
-justify-content:left;
+.description{
+text-align: center;
+}
+.star {
+position: absolute;
+top: 10px;
+right: 10px;
+font-size: 20px;
+color: gold;
+opacity: 0.7;
+transition: transform 0.2s ease-in-out;
+cursor: pointer;
+}
+.star:hover {
+transform: scale(1.2);
 }
 @media (max-wight: 400px){
+.container {
+width: 100%;
+padding: 10px;
 }
