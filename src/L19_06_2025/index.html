@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <form action="/search" method="get" class="form">
+        <label for="query">Строка поиска</label>
+        <input type="text" name="query" id="query">
+
+        <label for="type">Тип объекта</label>
+        <select id="type" name="type">
+            <option value="fruit" selected>фрукт</option>
+            <option value="vegetable">овощ</option>
+            <option value="berry">ягода</option>
+        </select>
+        <label for="color">Цвет</label>
+        <select id="color" name="color">
+            <option value="red" selected>красный</option>
+            <option value="green">зеленый</option>
+            <option value="yellow">желтый</option>
+        </select>
+        <label for="number">Количество результатов</label>
+        <input type="number" name="limit" id="number" min="1" max="50" value="10">
+        <button type="submit" class="btn">Отправить</button>
+    </form>
+
+</body>
+</html> 
