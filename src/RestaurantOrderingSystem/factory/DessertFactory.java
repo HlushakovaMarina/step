@@ -5,8 +5,8 @@ import RestaurantOrderingSystem.model.MenuItem;
 
 public class DessertFactory implements MenuItemFactory{
     @Override
-    public MenuItem createMenuItem(int id, String name, double price, boolean isAvailable) {
-        return new MenuItem(id, name, price, Category.DESSERT, isAvailable);
+    public MenuItem createMenuItem(Long id, String name, double price, boolean isAvailable) {
+        return new MenuItem(id, name, price, getCategory(), isAvailable);
     }
 
     @Override

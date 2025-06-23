@@ -3,13 +3,13 @@ package RestaurantOrderingSystem.model;
 import RestaurantOrderingSystem.Enum.Category;
 
 public class MenuItem {
-    private final int id;
+    private final Long id;
     private final String name;
     private final double price;
     private final Category category;
-    private final boolean isAvailable;
+    private boolean isAvailable;
 
-    public MenuItem(int id, String name, double price, Category category, boolean isAvailable) {
+    public MenuItem(Long id, String name, double price, Category category, boolean isAvailable) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -17,9 +17,7 @@ public class MenuItem {
         this.isAvailable = isAvailable;
     }
 
-    public int getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 
     public String getName() {
         return name;
@@ -37,12 +35,18 @@ public class MenuItem {
         return isAvailable;
     }
 
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
+
     @Override
     public String toString() {
         return "MenuItem{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
+                ", category=" + category +
+                ", isAvailable=" + isAvailable +
                 '}';
     }
 }

@@ -3,17 +3,17 @@ package RestaurantOrderingSystem.model;
 import RestaurantOrderingSystem.Enum.PaymentMethod;
 
 public class Payment {
-    private final int id;
+    private final Long id;
     private final double amount;
     private final PaymentMethod method;
 
-    public Payment(int id, double amount, PaymentMethod method) {
+    public Payment(Long id, double amount, PaymentMethod method) {
         this.id = id;
         this.amount = amount;
         this.method = method;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -23,5 +23,14 @@ public class Payment {
 
     public PaymentMethod getMethod() {
         return method;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", method=" + method +
+                '}';
     }
 }

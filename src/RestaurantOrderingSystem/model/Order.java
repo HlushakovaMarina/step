@@ -5,13 +5,13 @@ import RestaurantOrderingSystem.Enum.Status;
 import java.util.List;
 
 public class Order {
-    private final int id;
+    private final Long id;
     private final Customer customer;
     private final List<MenuItem> items;
     private Status status;
     private double totalAmount;
 
-    public Order(int id, Customer customer, List<MenuItem> items) {
+    public Order(Long id, Customer customer, List<MenuItem> items) {
         this.id = id;
         this.customer = customer;
         this.items = items;
@@ -19,7 +19,7 @@ public class Order {
         this.totalAmount = calculateTotal();
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -41,6 +41,10 @@ public class Order {
 
     public double getTotalAmount() {
         return totalAmount;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     private double calculateTotal() {

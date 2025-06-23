@@ -1,17 +1,17 @@
 package RestaurantOrderingSystem.model;
 
 public class Customer {
-    private final int id;
+    private final Long id;
     private final String name;
     private final String phone;
 
-    public Customer(int id, String name, String phone) {
+    public Customer(Long id, String name, String phone) {
         this.id = id;
         this.name = name;
         this.phone = phone;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -21,5 +21,14 @@ public class Customer {
 
     public String getPhone() {
         return phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }

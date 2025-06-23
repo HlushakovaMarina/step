@@ -3,10 +3,10 @@ package RestaurantOrderingSystem.factory;
 import RestaurantOrderingSystem.Enum.Category;
 import RestaurantOrderingSystem.model.MenuItem;
 
-public class SnackFactory implements MenuItemFactory{
+public class SnackFactory implements MenuItemFactory {
     @Override
-    public MenuItem createMenuItem(int id, String name, double price, boolean isAvailable) {
-        return new MenuItem(id, name, price, Category.SNACK, isAvailable);
+    public MenuItem createMenuItem(Long id, String name, double price, boolean isAvailable) {
+        return new MenuItem(id, name, price, getCategory(), isAvailable);
     }
 
     @Override
