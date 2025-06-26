@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Демо DOM</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .container { max-width: 600px; margin: auto; }
+    button { margin: 5px; padding: 10px; cursor: pointer; }
+    input { padding: 5px; margin: 10px 0; }
+    ul { margin: 10px 0; padding-left: 20px; }
+    li { margin: 5px 0; }
+    .highlight { background-color: yellow; }
+  </style>
+  <script src="index1_script.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1 id="mainHeader">Основы DOM</h1>
+    <p id="mainText">Это текст, который мы будем изменять.</p>
+    
+    <input type="text" id="userInput" placeholder="Введите текст">
+    
+    <button id="changeTextBtn">Изменить текст</button>
+    <button id="addListItemBtn">Добавить элемент в список</button>
+    <button id="highlightHeaderBtn">Подсветить заголовок</button>
+    <button id="removeLastItemBtn">Удалить последний элемент</button>
+    
+    <h3>Список:</h3>
+    <ul id="itemList">
+      <li>Элемент 1</li>
+      <li>Элемент 2</li>
+    </ul>
+  </div>
+
+</body>
+</html>
