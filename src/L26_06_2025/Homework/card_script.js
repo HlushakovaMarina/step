@@ -12,7 +12,7 @@ const contactBtn = document.getElementById('contactBtn');
 
 // 2.Обработка клика по кнопке "Связаться"
   contactBtn.addEventListener('click', () => {
-    alert('Отправить письмо на anna.ivanova@example.com?');
+    alert('Отправить письмо на truhina_m@mail.ru?');
   });
 
    // Обработка клика по кнопке "Увеличить возраст"
@@ -37,7 +37,7 @@ const contactBtn = document.getElementById('contactBtn');
     const newHobbyLi = document.createElement('li');
     newHobbyLi.textContent = `Хобби: ${hobbyText}`;
     hobbyList.appendChild(newHobbyLi);
-    newHobbyInput.value = ''; // Очищаем поле ввода
+    newHobbyInput.value = '';
   });
 
   // Стилизация при наведении на заголовок
@@ -52,12 +52,10 @@ const contactBtn = document.getElementById('contactBtn');
   // Подсветка элементов списка при клике (бонус)
   hobbyList.addEventListener('click', (event) => {
       if (event.target.tagName === 'LI') {
-          // Убираем подсветку со всех элементов списка
+
           hobbyList.querySelectorAll('li').forEach(li => {
               li.classList.remove('highlight');
           });
-
-          // Подсвечиваем текущий элемент
           event.target.classList.add('highlight');
       }
   });

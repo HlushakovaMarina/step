@@ -1,0 +1,93 @@
+Задача : Галерея фотографий с JSONPlaceholder
+Цель: Используя AJAX (fetch), получить данные о фотографиях из ресурса
+https://jsonplaceholder.typicode.com/photos
+и создать интерактивную галерею изображений на веб-странице.
+
+Исходный HTML:
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Галерея фотографий</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .container { max-width: 800px; margin: auto; }
+    .gallery { display: flex; flex-wrap: wrap; gap: 10px; }
+    .photo-card { border: 1px solid #ccc; padding: 10px; width: 150px; text-align: center; }
+    .photo-card img { max-width: 100%; height: auto; }
+    button { padding: 8px; margin: 5px; cursor: pointer; }
+    #output { margin-top: 10px; color: red; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Галерея фотографий</h1>
+    <button id="loadPhotosBtn">Загрузить фотографии</button>
+    <div id="gallery" class="gallery"></div>
+    <div id="output"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+Задание:
+
+Создание скрипта:
+Создайте файл script.js и подключите его к HTML (уже сделано в <script src="script.js">).
+Убедитесь, что весь код выполняется после загрузки DOM (используйте document.addEventListener('DOMContentLoaded', ...)).
+Загрузка фотографий (GET-запрос):
+При клике на кнопку "Загрузить фотографии" отправьте GET-запрос к https://jsonplaceholder.typicode.com/photos с помощью fetch и async/await.
+Ограничьте количество загружаемых фотографий до первых 10 (используйте параметр запроса ?_limit=10, например, https://jsonplaceholder.typicode.com/photos?_limit=10).
+Если запрос успешен, отобразите фотографии в элементе <div id="gallery"> как карточки с изображением (thumbnailUrl) и заголовком (title).
+Если произошла ошибка (например, сетевые проблемы), отобразите сообщение об ошибке в <div id="output">.
+Создание карточек фотографий:
+Для каждой фотографии создайте <div class="photo-card">, содержащий:
+Элемент <img> с атрибутом src, равным thumbnailUrl из ответа API.
+Элемент <p> с текстом title из ответа API.
+Добавьте карточки в <div id="gallery"> с помощью createElement и appendChild.
+Интерактивность:
+При клике на изображение в карточке замените его thumbnailUrl на url (полноразмерное изображение) и обратно при повторном клике (используйте classList.toggle или атрибут data-fullsize для отслеживания состояния).
+Используйте делегирование событий на <div id="gallery">, чтобы обрабатывать клики по изображениям.
+Очистка галереи:
+Добавьте кнопку "Очистить галерею" рядом с кнопкой "Загрузить фотографии".
+При клике на неё удалите все карточки из <div id="gallery"> и очистите <div id="output">.
+Требования:
+
+Используйте fetch с async/await для AJAX-запросов.
+Привяжите события через addEventListener, а не через атрибуты onclick.
+Обрабатывайте ошибки (например, сетевые сбои или неверный ответ) и показывайте их в <div id="output">.
+Убедитесь, что код не вызывает ошибок при отсутствии данных или повторных запросах.
+Используйте делегирование событий для обработки кликов по изображениям.
+Бонус (по желанию):
+
+Добавьте фильтрацию по albumId. Создайте <input type="number"> для ввода ID альбома (1–100) и загружайте только фотографии из указанного альбома (используйте запрос https://jsonplaceholder.typicode.com/albums/{albumId}/photos).
+Реализуйте пагинацию: добавьте кнопки "Предыдущая страница" и "Следующая страница" для загрузки следующих/предыдущих 10 фотографий (используйте параметр ?_start=X&_limit=10).
+Пример результата:
+
+После нажатия "Загрузить фотографии":
+В <div id="gallery"> появляются 10 карточек с миниатюрами и заголовками.
+Клик по изображению переключает его на полноразмерное и обратно.
+При ошибке (например, отключён интернет) в <div id="output"> появляется сообщение, например, "Ошибка загрузки".
+Нажатие "Очистить галерею" удаляет все карточки и сообщения об ошибках.
+(Бонус) Ввод albumId загружает фотографии только из выбранного альбома.
+Подсказки:
+
+Структура ответа от /photos:
+json
+
+[
+  {
+    "albumId": 1,
+    "id": 1,
+    "title": "accusamus beatae ad facilis cum similique qui sunt",
+    "url": "https://via.placeholder.com/600/92c952",
+    "thumbnailUrl": "https://via.placeholder.com/150/92c952"
+  },
+  ...
+]
+Для делегирования событий используйте event.target и проверку, что клик был по <img>.
+Для очистки галереи используйте innerHTML = '' или while (element.firstChild) element.removeChild(element.firstChild).
+Для бонусной пагинации отслеживайте текущий start и обновляйте его при нажатии на кнопки.
