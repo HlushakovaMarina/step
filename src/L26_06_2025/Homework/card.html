@@ -1,19 +1,155 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Карточка пользователя</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+       body {
+font-family: sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100px;
+background-color: #eee;
+}
+.container{
+    position: relative;
+    width: 350px;
+    height: 580px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
+    }
+.info{
+display: flex;
+flex-direction: column;
+margin-bottom: 10px;
+padding: 10px;
+background-color: #f0f0f0;
+border-radius: 3px;
+}
+.info ul {
+font-size: 14px;
+margin: 5px 0;
+text-align: left;
+}
+.cards{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 570px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+.buttons {
+display: flex;
+justify-content: space-around;
+width: 100%;
+}
+button {
+background-color: blue;
+color: white;
+padding: 5px 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 14px;
+transition: background-color 0.3s;
+}
+button:hover {
+background-color: #f10ee2d9;
+}
+.contactBtn {
+background-color: blue;
+color: white;
+border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.avatar{
+width: 150px;
+height: 150px;
+border-radius: 50%;
+float: left;
+margin-right: 15px;
+    display: block;
+    margin: 0 auto;
+}
+.description{
+text-align: center;
+}
+.star {
+position: absolute;
+top: 10px;
+right: 10px;
+font-size: 20px;
+color: gold;
+opacity: 0.7;
+transition: transform 0.2s ease-in-out;
+cursor: pointer;
+}
+.star:hover {
+transform: scale(1.2);
+}
+@media (max-wight: 400px){
+.container {
+width: 100%;
+padding: 10px;
+}}
+input {
+padding: 7px; 
+margin: 5px; 
+width: 95%;
+}
+.highlight {
+background-color: yellow; }
+   </style>
     <script src="card_script.js"></script>
 </head>
 <body>
-<h1 id="mainHeader">Анна Иванова</h1>
-<ul>
-    <li id="age">Возраст: 25 лет</li>
-    <li id="email">Email: anna.ivanova@example.com</li>
-    <li id="address">Адрес: Москва, ул. Ленина, 10</li>
-    <li id="hobby">Хобби: программирование, путешествия</li>
-</ul>
-<p id="mainText">Фронтенд-разработчик, люблю создавать красивые интерфейсы.</p>
-<button id="btn">Связаться</button>
+<div class="container">
+    <article class="cards">
+        <div class="star">
+            <img src="https://img.freepik.com/premium-vector/realistic-yellow-vector-star-3d_868719-848.jpg" width="20"height="20">
+        </div>
+        <img src="https://sun9-24.userapi.com/impg/v7yWsum0oHAQrwGFXk3SHQVdiOk5XddaDyEyaQ/mtL8nWg_J3k.jpg?size=566x655&quality=95&sign=5a1da916eb39eb9549c1d49ace2237dc&type=album" alt="Аватар пользователя" width="120" height="170" class="avatar">
+        <h1>Марина Глушакова</h1>
+        <div class="info">
+            <ul>
+            <li>Возраст: 32 года</li>
+            <li><a href="mailto:truhina_m@mail.ru">Email: truhina_m@mail.ru</a></li>
+            <li>Адрес:г. Витебск, пр-т Куйбышева, 92в</li>
+            <li>Хобби: <a href="#">проектирование</a>, <a href="#">дизайн</a>,
+                <a href="#">handmade</a>, <a href="#">активный отдых</a>,
+                <a href="#">путешествия</a>, <a href="#">спорт</a></li>
+            </ul>
+        </div>
+        <div class="description">
+            <p>Архитектура – моя страсть, творчество – моя жизнь.  Нахожу вдохновение в проектировании,
+                самовыражаюсь через создание вещей своими руками.
+                Жажду новых впечатлений, поэтому путешествия, спорт и активный отдых – неотъемлемая часть моей жизни. Творческий человек со своими разработками! </p>
+        </div>
+        <input type="text" id="newHobby" placeholder="Введите хобби">
+        <div class="buttons">
+            <button id="addHobbyBtn">Добавить хобби</button>
+            <button id="contactBtn">Связаться</button>
+            <button id="increaseAgeBtn">Увеличить возраст</button>
+            <button id="resetAgeBtn">Сбросить возраст</button>
+        </div>
+    </article>
+</div>
 </body>
 </html>
