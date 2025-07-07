@@ -34,4 +34,5 @@ public class ConsoleMenu {
         PaymentConfig.getInstance(0.05);
 
 
+    }
 }
