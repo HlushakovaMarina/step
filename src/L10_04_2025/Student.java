@@ -15,7 +15,10 @@ public class Student {
         this.city= builder.city;
     }
 
-//    вложенный класс
+    public Student(String мария, int i, double v) {
+    }
+
+    //    вложенный класс
     public static class Builder {
         private String name;
         private int age;
