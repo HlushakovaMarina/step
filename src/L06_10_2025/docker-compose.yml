@@ -1,0 +1,35 @@
+version: '3.3'
+services:
+
+  jira-server:
+    depends_on:
+      - postgres-server
+    environment:
+      - JVM_MINIMUM_MEMORY=3072m
+      - JVM_MAXIMUM_MEMORY=3072m
+      - JVM_RESERVED_CODE_CACHE_SIZE=1024m
+      - ATL_TOMCAT_PORT=8100
+      - ATL_PROXY_NAME=site.url
+      - ATL_PROXY_PORT=443
+      - ATL_TOMCAT_SCHEME=http
+      - ATL_TOMCAT_SECURE=false
+      - ATL_TOMCAT_CONTEXTPATH=jira
+    volumes:
+      - '/var/data/jira:/var/atlassian/application-data/jira'
+    container_name: jira
+    ports:
+      - '8100:8100'
+    image: 'atlassian/jira-software'
+    restart: unless-stopped
+
+  postgres-server:
+    environment:
+      - POSTGRES_PASSWORD=myPassword
+      - POSTGRES_USER=PGUser
+      - POSTGRES_DB=database
+    volumes:
+      - '/var/data/postgres:/var/lib/postgresql/data'
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    image: postgres:alpine

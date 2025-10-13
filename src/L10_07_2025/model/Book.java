@@ -1,4 +1,4 @@
-package L10_07_2025.model;
+package model;
 
 public class Book {
     private int id;

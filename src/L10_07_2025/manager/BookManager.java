@@ -1,6 +1,6 @@
 package L10_07_2025.manager;
 
-import by.ilyushenko.model.Book;
+import model.Book;
 
 import java.sql.*;
 import java.util.ArrayList;

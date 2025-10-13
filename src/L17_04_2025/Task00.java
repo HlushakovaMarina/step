@@ -2,7 +2,7 @@ package L17_04_2025;
 
 import L14_04_2025.Apple;
 import L14_04_2025.Color;
-import L14_04_2025.predicate.ApplePredicate;
+
 
 import java.util.ArrayList;
 import java.util.Comparator;
