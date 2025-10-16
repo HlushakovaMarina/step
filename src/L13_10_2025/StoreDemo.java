@@ -48,7 +48,7 @@ public class StoreDemo {
         System.out.println("\n=== Наличие товара P001 в корзинах ===");
         System.out.println(SimpleStoreTasks.isProductInCarts(store, "P001"));
 
-        // Задача 8
+       /* // Задача 8
         System.out.println("\n=== Корзины с товарами категории Книги ===");
         List<Cart> bookCarts = SimpleStoreTasks.findCartsByCategory(store, Category.BOOKS);
         bookCarts.forEach(System.out::println);
@@ -61,5 +61,13 @@ public class StoreDemo {
         // Задача 10
         System.out.println("\n=== Количество уникальных товаров в корзинах ===");
         System.out.println(SimpleStoreTasks.countUniqueProductsInCarts(store));
+    }*/
+        //Задача 11.
+        System.out.println("\n=== общая стоимость всех товаров на складе ===");
+        System.out.println(SimpleStoreTasks.calculateTotalInventoryValue(store));
+
+        // 12.
+        System.out.println("\n=== корзины с общей стоимостью выше заданного порога ===");
+        System.out.println(SimpleStoreTasks.findExpensiveCarts(store, 150));
     }
 }

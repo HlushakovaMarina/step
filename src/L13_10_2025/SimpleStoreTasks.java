@@ -1,9 +1,6 @@
 package L13_10_2025;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class SimpleStoreTasks {
@@ -44,9 +41,9 @@ public class SimpleStoreTasks {
      * @return Set<Category> уникальные категории товаров в корзинах
      */
     public static Set<Category> findCategoriesInCarts(Store store) {
-       return store.getCarts().stream()
+        return store.getCarts().stream()
                 .flatMap(cart -> cart.getItems().stream())
-                .map(p-> p.getProduct().getCategory()).collect(Collectors.toSet());
+                .map(p -> p.getProduct().getCategory()).collect(Collectors.toSet());
 
     }
 
@@ -58,7 +55,7 @@ public class SimpleStoreTasks {
      * @return int общее количество товаров в указанной корзине
      */
     public static int countItemsInCart(Store store, String cartId) {
-       return store.getCarts().stream().filter(cart -> cart.getCartId().equals(cartId))
+        return store.getCarts().stream().filter(cart -> cart.getCartId().equals(cartId))
                 .flatMap(cart -> cart.getItems().stream())
                 .mapToInt(CartItem::getQuantity).sum();
     }
@@ -71,7 +68,7 @@ public class SimpleStoreTasks {
      * @return List<Product> товары с запасом больше minStock
      */
     public static List<Product> findHighStockProducts(Store store, int minStock) {
-        return store.getProducts().stream().filter(product -> product.getStock()>minStock).toList();
+        return store.getProducts().stream().filter(product -> product.getStock() > minStock).toList();
     }
 
     /**
@@ -83,8 +80,8 @@ public class SimpleStoreTasks {
      */
     public static boolean isProductInCarts(Store store, String productId) {
         return store.getCarts().stream()
-                .flatMap(cart-> cart.getItems().stream())
-                .anyMatch(i->i.getProduct().getProductId().equals(productId));
+                .flatMap(cart -> cart.getItems().stream())
+                .anyMatch(i -> i.getProduct().getProductId().equals(productId));
     }
 
     /**
@@ -94,31 +91,41 @@ public class SimpleStoreTasks {
      * @param category - целевая категория
      * @return List<Cart> корзины, содержащие товары указанной категории
      */
-    public static List<Cart> findCartsByCategory(Store store, Category category) {
+    /*/public static List<Cart> findCartsByCategory(Store store, Category category) {
         return store.getCarts().stream()
                 .flatMap(cart -> cart.getItems().stream())
                 .map();
+    }*/
+
+    /**
+     * Задача 11: Найти общую стоимость всех товаров на складе (price * stock для всех товаров)
+     *
+     * @param store - магазин
+     * @return double общая стоимость (сумма price * stock)
+     */
+    public static double calculateTotalInventoryValue(Store store) {
+       return store.getProducts().stream().mapToDouble(p->p.getPrice()*p.getStock()).sum();
+    }
+    /**
+     * Задача 12: Найти корзины с общей стоимостью выше заданного порога
+     * @param store - магазин
+     * @param threshold - порог стоимости корзины
+     * @return List<Cart> корзины с totalPrice > threshold
+     */
+    public static List<Cart> findExpensiveCarts(Store store, double threshold) {
+        return store.getCarts().stream()
+                .filter(cart -> cart.getTotalPrice()>threshold).toList();
     }
 
     /**
-     * Задача 9: Найти самый дешевый товар в магазине
-     *
+     * Задача 13: Подсчитать количество товаров каждой категории в магазине
      * @param store - магазин
-     * @return Product самый дешевый товар или null, если товаров нет
+     * @return Map<Category, Integer> количество товаров по категориям
      */
-    public static Product findCheapestProduct(Store store) {
-        // ВАШ КОД ЗДЕСЬ
-        return null;
+    public static Map<Category, Integer> countProductsByCategory(Store store) {
+        return store.getProducts().stream()
+                .collect(Collectors.groupingBy(p->p.getCategory(), Collectors.counting()))
+                .entrySet().stream().collect(Collectors.)
     }
 
-    /**
-     * Задача 10: Подсчитать общее количество уникальных товаров в корзинах
-     *
-     * @param store - магазин
-     * @return int количество уникальных товаров в корзинах
-     */
-    public static int countUniqueProductsInCarts(Store store) {
-        // ВАШ КОД ЗДЕСЬ
-        return 0;
-    }
 }
