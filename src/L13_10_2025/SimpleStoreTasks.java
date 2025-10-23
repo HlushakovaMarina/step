@@ -122,10 +122,10 @@ public class SimpleStoreTasks {
      * @param store - магазин
      * @return Map<Category, Integer> количество товаров по категориям
      */
-    public static Map<Category, Integer> countProductsByCategory(Store store) {
+  /*  public static Map<Category, Integer> countProductsByCategory(Store store) {
         return store.getProducts().stream()
                 .collect(Collectors.groupingBy(p->p.getCategory(), Collectors.counting()))
                 .entrySet().stream().collect(Collectors.)
-    }
+    }*/
 
 }
