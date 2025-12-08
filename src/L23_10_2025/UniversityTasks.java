@@ -67,9 +67,9 @@ public static Set<String> findSubjectsWithGrades(University uni) {
                 .map(gradeRecord -> gradeRecord.getStudent()).toList();
         return uni.getGroups().stream().flatMap(group -> group.getStudents().stream()).filter(student -> !studentsWithGrades.contains(student)).toList();
     }
-    //Задача 11: Найти всех студентов определённого курса
+   /* //Задача 11: Найти всех студентов определённого курса
     public static List<Student> findStudentsByYear(University uni, int year) {
         return uni.getGroups().stream()
                 .map(group -> group.getStudents()).filter(students -> students.).toList();
-    }
+    }*/
 }
